@@ -1,0 +1,36 @@
+<h2>{{ $bookdetails->title }}</h2>
+<h2>{{ $bookdetails->isbn }}</h2>
+<h2>{{ $bookdetails->price }}</h2>
+<img src="{{ URL::asset('uploads/'.$bookdetails->cover_image) }}" alt="">
+
+
+
+<h2>{{ $bookdetails->cover_image }}</h2>
+
+<p>{{ $bookdetails->description }}</p>
+
+<h5>Catagory:</h5>
+<p>{{ $bookdetails->category->name }}</p>
+
+<h5>Tags:</h5>
+<ul>
+@foreach($bookdetails->tags as $tag)
+    <li>{{$tag->tag_name}}</li>
+@endforeach
+</ul>
+
+<h5>Authors:</h5>
+<ul>
+    @foreach($bookdetails->authors as $author)
+        <li>{{$author->author_name}}</li>
+    @endforeach
+</ul>
+
+<?php
+    $resultstr = array();
+    foreach ($bookdetails->tags as $tag) {
+      $resultstr[] = $tag->tag_name;
+    }
+    $resultnew = implode(', ',$resultstr);
+    echo $resultnew;
+?>
