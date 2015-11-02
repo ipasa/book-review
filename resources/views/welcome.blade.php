@@ -197,8 +197,50 @@
         $sizeOfArray    =   sizeof($result);
         $dividedSize    =   $sizeOfArray/4;
     ?>
-
+    <!-- CATAGORY LIST SECTION -->
     <div class="caragory-row">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section_title">List of all Catagory</h2>
+
+                <?php
+                $categoryArray  =   App\Category::all();
+                $sizeOfCategoryArray    =   sizeof($categoryArray);
+                $itemSize   =   $sizeOfCategoryArray/4;
+                $itemSize   =   ceil($itemSize);
+                $newCounter =   $itemSize;
+
+                $counter    =   0;
+                for ($i=0; $i < 4; $i++) {
+                ?>
+                <div class="col-md-3">
+                    <ul>
+                        <?php for ($j=$counter; $j < $itemSize; $j++) { ?>
+                        <li>
+                            <a href="{{ $categoryArray[$j]->name }}">
+                                <?php
+                                echo $categoryArray[$j]->name;
+                                ?>
+                            </a>
+                        </li>
+                        <?php
+                        }
+                        $counter    =   $j;
+                        $itemSize   =   $j+$newCounter;
+                        if ($itemSize>$sizeOfCategoryArray) {
+                            $itemSize   =   $sizeOfCategoryArray;
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+                <?php } ?>
+
+            </div>
+        </div>
+    </div>
+    <!-- END OF CATAGORY LIST SECTION -->
+    {{--<div class="caragory-row">
         <div class="row">
             <div class="col-md-12">
                 <h2 class="section_title">List of all Catagory</h2>
@@ -210,33 +252,9 @@
                         <li><a href="#">History</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <ul>
-                        <li><a href="#">Programming</a></li>
-                        <li><a href="#">Nobel</a></li>
-                        <li><a href="#">Web Programming</a></li>
-                        <li><a href="#">History</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul>
-                        <li><a href="#">Programming</a></li>
-                        <li><a href="#">Nobel</a></li>
-                        <li><a href="#">Web Programming</a></li>
-                        <li><a href="#">History</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul>
-                        <li><a href="#">Programming</a></li>
-                        <li><a href="#">Nobel</a></li>
-                        <li><a href="#">Web Programming</a></li>
-                        <li><a href="#">History</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
-    </div>
+    </div>--}}
     <!-- END OF CATAGORY LIST SECTION -->
 
 
