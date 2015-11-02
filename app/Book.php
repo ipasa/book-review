@@ -11,4 +11,11 @@ class Book extends Model{
         //return Category::where('id', $this->category_id)->first()->name;
         return $this->belongsTo('App\Category');
     }
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+    public function authors(){
+        return $this->belongsToMany('App\Author');
+    }
 }
