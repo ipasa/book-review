@@ -66,21 +66,23 @@
 
                         <!-- CARAGORIES SECTION -->
                         <div class="col-md-12 col-xs-12 col-sm-4">
-                                    <span class="cats">
-                                        <h2 class="tags">Catagories : </h2>
-                                        <a href="#">{{ $bookdetails->category->name }}</a>
-                                    </span>
+                            <span class="cats">
+                                <h2 class="tags">Catagories : </h2>
+                                <a class="single-tags" href="#">{{ $bookdetails->category->name }}</a>
+                            </span>
                         </div>
                         <!-- CARAGORIES SECTION -->
 
                         <!-- TAGS SECTION -->
                         <div class="col-md-12 col-xs-12 col-sm-4">
-                                    <span class="cats">
-                                        <h2 class="tags">Tags : </h2>
-                                        @foreach($bookdetails->tags as $tag)
-                                            <a href="">{{$tag->tag_name}}</a><span>,</span>
-                                        @endforeach
+                            <span class="cats">
+                                <h2 class="tags">Tags : </h2>
+                                @foreach($bookdetails->tags as $tag)
+                                    <span>
+                                        <a class="single-tags" href="">{{$tag->tag_name}}</a>
                                     </span>
+                                @endforeach
+                            </span>
                         </div>
                         <!-- TAGS SECTION -->
 

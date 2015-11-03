@@ -8152,6 +8152,26 @@ label.greview {
   text-transform: uppercase;
   line-height: 20px !important;
 }
+a.single-tags {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #71767a;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+  border: 1px solid #b9c1c7;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 0 10px 10px 0;
+  background-color: white;
+}
+
+a.single-tags:hover {
+  border-color: #0099e5;
+  color: #0099e5;
+  text-decoration: blink;
+}
 
 .icon-bar {
   background-color: #fff;
