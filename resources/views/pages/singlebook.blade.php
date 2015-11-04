@@ -13,6 +13,31 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 
+    {{--Custom Script For Read me section--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/jquery.showmore.min.js') }}"></script>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        /* Shore more styles */
+        .showmore_content {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showmore_trigger {
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            cursor: pointer;
+        }
+
+        .showmore_trigger span {
+            display: block;
+        }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,7 +74,19 @@
             <section class="col-md-9 content_inner">
                 <div class="col-md-5">
                     <img src="{{ URL::asset('uploads/'.$bookdetails->cover_image) }}" alt="" class="img-responsive book-image">
+
+                    <!-- WISH LIST SECTION -->
+                        <div class="wishlist-button white-bg">
+                            <a href="#" class="add_to_wishlist add_to_cart_button">Add to Wishlist</a>
+                        </div>
+
+                        <span class="wishlist-button white-bg" style='float: right'>
+                            {{--<span class="love-text">Want to - </span><i class="fa fa-heart-o"></i>--}}
+                            <span class="love-text">You <i class="fa fa-heart"></i> this book</span>
+                        </span>
+                    <!-- WISH LIST SECTION -->
                 </div>
+
                 <!-- BOOK DETAIL'S DESCRIPTION -->
                 <div class="col-md-7">
                     <h1 itemprop="name" class="product_title entry-title">{{ $bookdetails->title }}</h1>
@@ -61,7 +98,7 @@
 
                     <div itemprop="description">
                         <div itemprop="description">
-                            <p>{{ substr($bookdetails->description,0,1000) }}</p>
+                            <p class="showmore_one">{{ $bookdetails->description }}</p>
                         </div>
 
                         <!-- CARAGORIES SECTION -->
@@ -409,6 +446,18 @@
 <section class="footer-bottom">
     2014 &copy; Jonathan White. All rights reserved.
 </section>
+<script>
+    $(document).ready(function() {
+
+        $('.showmore_one').showMore({
+            speedDown: 300,
+            speedUp: 300,
+            height: '100px',
+            showText: 'Show more <i class="fa fa-chevron-down"></i>',
+            hideText: 'Show less <i class="fa fa-chevron-up"></i>'
+        });
+    });
+</script>
 
 </body>
 </html>
