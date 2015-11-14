@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="51f81d08-6436-4f87-8e28-6acd5c75f27e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/singlebook.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/singlebook.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
     </list>
     <ignored path="book-review.iws" />
     <ignored path=".idea/workspace.xml" />
