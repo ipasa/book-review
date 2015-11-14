@@ -26,3 +26,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 //Single Book Show by Detail's
 Route::get('book/{id}', 'BookController@singleBook');
+
+//Category Showing
+Route::get('category/{id}', 'BookController@categoryShow');
+
+

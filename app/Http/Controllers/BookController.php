@@ -12,4 +12,8 @@ class BookController extends Controller{
         return view('pages.singlebook')->with('bookdetails', $singleBook);
     }
 
+    public function categoryShow($id){
+        return view('pages.categoryShow');
+    }
+
 }
