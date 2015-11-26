@@ -16,6 +16,11 @@
     {{--Custom Script For Read me section--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/jquery.showmore.min.js') }}"></script>
+
+    {{--Script for jquery cookie plugin--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
     <style>
         html {
             overflow-y: scroll;
