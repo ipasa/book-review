@@ -185,8 +185,9 @@
                     </div>
 
                     <div class="user_indivisual_review">
+
                         <div class="single_user">
-                            <img src="images/user/david-bushell-reviewer.png" alt="">
+                            <img src="{{ URL::asset('images/user/david-bushell-reviewer.png') }}" alt="">
                             <span class="reviewer_name">— David Bushell</span>
                             <!-- USER SINGLE RATING -->
                                     <span>
@@ -206,7 +207,7 @@
                         </div>
 
                         <div class="single_user">
-                            <img src="images/user/david-bushell-reviewer.png" alt="">
+                            <img src="{{ URL::asset('images/user/david-bushell-reviewer.png') }}" alt="">
                             <span class="reviewer_name">— David Bushell</span>
                                     <span>
                                         <p class="stars reviewer_rating">
@@ -289,7 +290,7 @@
                 <li class="col-xs-12 col-sm-6 col-md-4 first last">
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book6-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -298,13 +299,13 @@
                                 <div class="row model-review">
                                     <div class="col-md-12 col-xs-12 col-sm-4">
                                         <p class="stars">
-                                                    <span>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </span>
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
@@ -318,7 +319,7 @@
 
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -331,7 +332,7 @@
                 <li class="col-xs-12 col-sm-6 col-md-4 first last">
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book7-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -360,7 +361,7 @@
                 <li class="col-xs-12 col-sm-6 col-md-3 first last">
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book6-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -389,7 +390,7 @@
 
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -403,7 +404,7 @@
 
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -417,7 +418,7 @@
 
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
@@ -431,7 +432,7 @@
 
                     <div class="grid">
                         <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
+                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
                             <figcaption>
                                 <h2>Holy <span>Sadie</span></h2>
                                 <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
