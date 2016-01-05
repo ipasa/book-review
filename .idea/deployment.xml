@@ -51,13 +51,6 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="book-review">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="dynamic-slide">
         <serverdata>
           <mappings>

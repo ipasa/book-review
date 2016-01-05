@@ -12,9 +12,16 @@
 */
 
 Route::get('/', 'HomepageController@index');
+Route::get('/home', 'HomepageController@homepage');
+/*
 Route::get('/home', function () {
     return view('welcome');
 });
+*/
+
+#Profile
+Route::get('/{profile}', 'ProfilesController@show');
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

@@ -12,12 +12,19 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#section1">Start</a></li>
-                <li><a href="#section2">Next</a></li>
-                <li><a href="#section3">Then</a></li>
-                <li><a href="#section4">Form</a></li>
-                <li><a href="#section5">More</a></li>
-                <li><a href="#section6">Last</a></li>
+                @if (Auth::guest())
+                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>{!! link_to('/'.Auth::user()->id, 'Your Profile') !!}</li>
+                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                @endif
                 <li>&nbsp;</li>
             </ul>
         </div>

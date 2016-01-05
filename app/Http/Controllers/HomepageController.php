@@ -18,4 +18,9 @@ class HomepageController extends Controller
 
         return 'welcome';
     }
+
+    public function homepage()
+    {
+        return view('pages.homepage');
+    }
 }
