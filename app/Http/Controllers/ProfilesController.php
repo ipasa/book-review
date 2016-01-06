@@ -28,5 +28,21 @@ class ProfilesController extends Controller
         return view('profiles.show')->withUser($user);
     }
 
+    public function edit($id)
+    {
+        $user   =   User::with('profile')->findOrFail($id);
+        return view('profiles.edit')->withUser($user);;
+    }
+
+    public function update($id)
+    {
+        $user   =   User::with('profile')->findOrFail($id);
+        $input  =   \Input::only('location', 'bio', 'twitter_username', 'github_username');
+
+        $user->profile->fill($input)->save();
+
+        return redirect('/'.$user->id);
+    }
+
 
 }
