@@ -8,12 +8,25 @@
 
         <div class="row">
             <div class="col-md-8">
+                @if($errors->any())
+                    <ul class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
                 {!! Form::model($user->profile, ['method'=>'PATCH', 'route'=>['profile.update', $user->id]]) !!}
                     {{--location field--}}
                     <div class="form-group">
                         {!! Form::label('location', 'Location') !!}
                         {!! Form::text('location',null, ['class'=>'form-control']) !!}
                     </div>
+
 
                     {{--Bio field--}}
                     <div class="form-group">

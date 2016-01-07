@@ -13,7 +13,7 @@ class CreateProfileUpdateRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CreateProfileUpdateRequest extends Request
     public function rules()
     {
         return [
-            //
+            'location'          =>  'required',
+            'bio'               =>  'required',
+            'twitter_username'  =>  'required',
+            'github_username'   =>  'required'
         ];
     }
 }

@@ -8230,6 +8230,11 @@ a.single-tags:hover {
   color: #CC2936;
 }
 
+
+/*Last Design Editing*/
 .mar-top-50{
   margin-top: 50px;
+}
+.alert {
+  padding-left: 30px;
 }

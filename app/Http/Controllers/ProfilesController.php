@@ -34,9 +34,10 @@ class ProfilesController extends Controller
         return view('profiles.edit')->withUser($user);;
     }
 
-    public function update($id)
+    public function update(Requests\CreateProfileUpdateRequest $request,$id)
     {
         $user   =   User::with('profile')->findOrFail($id);
+
         $input  =   \Input::only('location', 'bio', 'twitter_username', 'github_username');
 
         $user->profile->fill($input)->save();

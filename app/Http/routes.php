@@ -19,6 +19,10 @@ Route::get('book/{id}', 'BookController@singleBook');
 Route::get('category/{id}', 'BookController@categoryShow');
 
 #Profile
-Route::resource('profile', 'ProfilesController', ['only'=>['show', 'edit', 'update']]);
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resource('profile', 'ProfilesController', ['only'=>['show', 'edit', 'update']]);
+});
+
 Route::get('/{profile}', 'ProfilesController@show');
 
