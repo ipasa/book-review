@@ -3,6 +3,18 @@
 Route::get('/', 'HomepageController@index');
 Route::get('/home', 'HomepageController@homepage');
 
+#Favorites
+Route::get('/favorites', function(){
+    $favorites      =   \App\Book::all();
+    $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
+    return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+});
+
+Route::post('favorites', ['as'=>'favorites.store', function(){
+    Auth::user()->favorites()->attach(Input::get('book-id'));
+    return redirect('favorites');
+}]);
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

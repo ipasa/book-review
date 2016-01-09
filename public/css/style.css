@@ -8218,9 +8218,11 @@ a.single-tags:hover {
 .white-bg{
   background: #ffffff none repeat scroll 0% 0%;
 }
+
+/*Favorites*/
 .fa-heart{
   font-size: 16px;
-  color: #CC2936;
+  color: #2b303b;
 }
 .fa-heart-o{
   font-size: 16px;
@@ -8229,7 +8231,24 @@ a.single-tags:hover {
 .love-text{
   color: #CC2936;
 }
+.btn-naked{
+  background: none;
+  border: none;
+}
 
+.not-favorated{
+  color: #2b303b;
+}
+.not-favorated:hover{
+  color: #CC2936;
+}
+
+.favorited{
+  color: #CC2936;
+}
+.favorited:hover{
+  color: #2b303b;
+}
 
 /*Last Design Editing*/
 .mar-top-50{
