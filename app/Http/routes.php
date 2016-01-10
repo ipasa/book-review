@@ -6,14 +6,26 @@ Route::get('/home', 'HomepageController@homepage');
 #Favorites
 Route::get('/favorites', function(){
     $favorites      =   \App\Book::all();
-    $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
-    return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+    if(Auth::check()){
+        $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
+        return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+    }
+    return view('favoriteBook.index', compact('favorites'));
 });
-
 Route::post('favorites', ['as'=>'favorites.store', function(){
     Auth::user()->favorites()->attach(Input::get('book-id'));
     return redirect('favorites');
 }]);
+#Remove from Favorites
+Route::delete('favorites/{bookId}', ['as'=>'favorites.destroy', function($bookid){
+    Auth::user()->favorites()->detach($bookid);
+    return redirect('favorites');
+}]);
+Route::get('/user/{userId}/favorites', function ($userId) {
+    $favorites   =  \App\User::findOrFail($userId)->favorites;
+    $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
+    return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+});
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
