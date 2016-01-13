@@ -3,6 +3,12 @@
 Route::get('/', 'HomepageController@index');
 Route::get('/home', 'HomepageController@homepage');
 
+Route::get('/alluser', function () {
+    $users  =   \App\User::all();
+    return view('pages/alluser')->with('users', $users);
+
+});
+
 #Favorites
 Route::get('/favorites', function(){
     $favorites      =   \App\Book::all();
@@ -47,6 +53,5 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::resource('profile', 'ProfilesController', ['only'=>['show', 'edit', 'update']]);
 });
-
-Route::get('/{profile}', 'ProfilesController@show');
+Route::get('/user/{profile}', 'ProfilesController@show');
 

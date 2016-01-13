@@ -21,7 +21,7 @@
                 </ul>
 
 
-                @if(Auth::check())
+                @if(Auth::check() && Auth::user()->id===$user->id)
                     {!! link_to_route('profile.edit', 'Edit your profile', $user->id)  !!}
                 @endif
             </div>
