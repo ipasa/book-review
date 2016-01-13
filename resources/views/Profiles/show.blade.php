@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
+    <div class="container full-color">
         <div class="row">
             <h2 class="also_like section_title mar-top-50">
                 {{ $user->name }}
@@ -9,11 +9,13 @@
             </h2>
             <div class="col-xs-12 col-md-12 col-sm-12">
 
-                <div class="bio">
-                    <p>
-                        {{ $user->profile->bio }}
-                    </p>
-                </div>
+                @if($user->profile->bio)
+                    <div class="bio">
+                        <p>
+                            {{ $user->profile->bio }}
+                        </p>
+                    </div>
+                @endif
 
                 <ul class="link">
                     <li>{!! link_to('http://twitter.com/'.$user->profile->twitter_username, 'Find me on Twitter') !!}</li>
@@ -26,6 +28,7 @@
                 @endif
             </div>
         </div>
+
     </div>
 @endsection
 

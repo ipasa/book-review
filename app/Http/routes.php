@@ -10,14 +10,14 @@ Route::get('/alluser', function () {
 });
 
 #Favorites
-Route::get('/favorites', function(){
-    $favorites      =   \App\Book::all();
-    if(Auth::check()){
-        $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
-        return view('favoriteBook.index', compact('favorites', 'favorites_list'));
-    }
-    return view('favoriteBook.index', compact('favorites'));
-});
+//Route::get('/favorites', function(){
+//    $favorites      =   \App\Book::all();
+//    if(Auth::check()){
+//        $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
+//        return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+//    }
+//    return view('favoriteBook.index', compact('favorites'));
+//});
 Route::post('favorites', ['as'=>'favorites.store', function(){
     Auth::user()->favorites()->attach(Input::get('book-id'));
     return redirect('favorites');
@@ -28,9 +28,16 @@ Route::delete('favorites/{bookId}', ['as'=>'favorites.destroy', function($bookid
     return redirect('favorites');
 }]);
 Route::get('/user/{userId}/favorites', function ($userId) {
-    $favorites   =  \App\User::findOrFail($userId)->favorites;
-    $favorites_list =   DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
-    return view('favoriteBook.index', compact('favorites', 'favorites_list'));
+    if(Auth::check()) {
+        $favorites_name =   \App\User::findOrFail($userId);
+        $favorites = \App\User::findOrFail($userId)->favorites;
+        $favorites_list = DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
+        return view('favoriteBook.index', compact('favorites', 'favorites_list'))->with('name', $favorites_name);
+    }
+    $favorites_name =   \App\User::findOrFail($userId);
+    $favorites      =   \App\User::findOrFail($userId)->favorites;
+    $favorites_list =   DB::table('favorites')->whereUserId($userId)->lists('book_id');
+    return view('favoriteBook.user', compact('favorites', 'favorites_list'))->with('name', $favorites_name);
 });
 
 // Authentication routes...

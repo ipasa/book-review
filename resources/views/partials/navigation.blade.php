@@ -11,7 +11,11 @@
             <a class="navbar-brand text-danger" href="#">BRAND</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
+            <ul class="nav navbar-nav navbar-left">
+
+            </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>{!! link_to('/alluser', 'All User List') !!}</li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
@@ -21,6 +25,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>{!! link_to('/user/'.Auth::user()->id, 'Your Profile') !!}</li>
+                            <li>{!! link_to('/user/'.Auth::user()->id.'/favorites', 'Your Favorites') !!}</li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>

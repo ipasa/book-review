@@ -30,8 +30,12 @@ class ProfilesController extends Controller
 
     public function edit($id)
     {
-        $user   =   User::with('profile')->findOrFail($id);
-        return view('profiles.edit')->withUser($user);;
+        if(\Auth::user()->id==$id){
+            $user   =   User::with('profile')->findOrFail($id);
+            return view('profiles.edit')->withUser($user);
+        }
+        else
+            return 'You have no privilise to edit this page';
     }
 
     public function update(Requests\CreateProfileUpdateRequest $request,$id)
@@ -42,7 +46,7 @@ class ProfilesController extends Controller
 
         $user->profile->fill($input)->save();
 
-        return redirect('/'.$user->id);
+        return redirect('/user/'.$user->id);
     }
 
 
