@@ -81,13 +81,26 @@
                     <img src="{{ URL::asset('uploads/'.$bookdetails->cover_image) }}" alt="" class="img-responsive book-image">
 
                     <!-- WISH LIST SECTION -->
-                        <div class="wishlist-button white-bg">
-                            <a href="#" class="add_to_wishlist add_to_cart_button">Add to Wishlist</a>
-                        </div>
+                        {{--<div class="wishlist-button white-bg">--}}
+                            {{--<a href="#" class="add_to_wishlist add_to_cart_button">Add to Wishlist</a>--}}
+                        {{--</div>--}}
 
-                        <span class="wishlist-button white-bg" style='float: right'>
+                        {{--<span class="wishlist-button white-bg" style='float: right'>--}}
+                        <span style='float: right'>
                             {{--<span class="love-text">Want to - </span><i class="fa fa-heart-o"></i>--}}
-                            <span class="love-text">You <i class="fa fa-heart"></i> this book</span>
+                            {{--<span class="love-text">You <i class="fa fa-heart"></i> this book</span>--}}
+                            {{--<span class="love-text">@include('partials/form-button') </span>--}}
+
+                            @if(Auth::check())
+                                <?php $favorited=in_array($bookdetails->id, $favorites_list); ?>
+                                {!! Form::open(['route' => 'favorites.store']) !!}
+                                {!! Form::hidden('book-id', $bookdetails->id) !!}
+
+                                <button type="submit" class="btn-naked">
+                                    <i class="fa fa-heart {{ $favorited ? 'favorited':'not-favorated' }}"></i>
+                                </button>
+                            @endif
+
                         </span>
                     <!-- WISH LIST SECTION -->
                 </div>
