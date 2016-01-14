@@ -4,7 +4,7 @@ Route::get('/', 'HomepageController@index');
 Route::get('/home', 'HomepageController@homepage');
 
 Route::get('/alluser', function () {
-    $users  =   \App\User::all();
+    $users = \App\User::all();
     return view('pages/alluser')->with('users', $users);
 
 });
@@ -18,25 +18,25 @@ Route::get('/alluser', function () {
 //    }
 //    return view('favoriteBook.index', compact('favorites'));
 //});
-Route::post('favorites', ['as'=>'favorites.store', function(){
+Route::post('favorites', ['as' => 'favorites.store', function () {
     Auth::user()->favorites()->attach(Input::get('book-id'));
     return redirect('favorites');
 }]);
 #Remove from Favorites
-Route::delete('favorites/{bookId}', ['as'=>'favorites.destroy', function($bookid){
+Route::delete('favorites/{bookId}', ['as' => 'favorites.destroy', function ($bookid) {
     Auth::user()->favorites()->detach($bookid);
     return redirect('favorites');
 }]);
 Route::get('/user/{userId}/favorites', function ($userId) {
-    if(Auth::check()) {
-        $favorites_name =   \App\User::findOrFail($userId);
+    if (Auth::check()) {
+        $favorites_name = \App\User::findOrFail($userId);
         $favorites = \App\User::findOrFail($userId)->favorites;
         $favorites_list = DB::table('favorites')->whereUserId(Auth::user()->id)->lists('book_id');
         return view('favoriteBook.index', compact('favorites', 'favorites_list'))->with('name', $favorites_name);
     }
-    $favorites_name =   \App\User::findOrFail($userId);
-    $favorites      =   \App\User::findOrFail($userId)->favorites;
-    $favorites_list =   DB::table('favorites')->whereUserId($userId)->lists('book_id');
+    $favorites_name = \App\User::findOrFail($userId);
+    $favorites = \App\User::findOrFail($userId)->favorites;
+    $favorites_list = DB::table('favorites')->whereUserId($userId)->lists('book_id');
     return view('favoriteBook.user', compact('favorites', 'favorites_list'))->with('name', $favorites_name);
 });
 
@@ -56,9 +56,14 @@ Route::get('book/{id}', 'BookController@singleBook');
 Route::get('category/{id}', 'BookController@categoryShow');
 
 #Profile
-Route::group(['middleware' => 'auth'], function()
-{
-    Route::resource('profile', 'ProfilesController', ['only'=>['show', 'edit', 'update']]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
 });
 Route::get('/user/{profile}', 'ProfilesController@show');
+Route::get('test1', array('before' => 'csrf', 'uses' => function () {
+//    $data = Input::all();
+//    if (Request::ajax()) {
+      echo Input::get('score_tag');
+//    }
 
+}));

@@ -16,7 +16,7 @@ class HomepageController extends Controller
     {
         Cookie::queue(Cookie::make('name', 'value', 'minutes'));
 
-        return 'welcome';
+        return view('test');
     }
 
     public function homepage()
