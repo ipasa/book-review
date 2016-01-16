@@ -19,9 +19,6 @@ class BookController extends Controller{
         }
         Cookie::queue(Cookie::make('name', $singleBook->title, 'minutes'));
         return view('pages.singlebook')->with('bookdetails', $singleBook);
-
-
-
     }
 
     public function categoryShow($id){

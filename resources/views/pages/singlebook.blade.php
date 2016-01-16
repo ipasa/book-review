@@ -95,13 +95,15 @@
                                 @if($favorited=in_array($bookdetails->id, $favorites_list))
                                     {!! Form::open(['method'=>'DELETE', 'route' => ['favorites.destroy', $bookdetails->id]]) !!}
                                 @else
-                                    {!! Form::open(['route' => 'favorites.store']) !!}
+                                    {!! Form::open(['route' => 'favorites.store','method' => 'post']) !!}
                                     {!! Form::hidden('book-id', $bookdetails->id) !!}
                                 @endif
 
-                                <button type="submit" class="btn-naked">
-                                    <i class="fa fa-heart {{ $favorited ? 'favorited':'not-favorated' }}"></i>
-                                </button>
+                                    <button type="submit" class="btn-naked">
+                                        <i class="fa fa-heart {{ $favorited ? 'favorited':'not-favorated' }}"></i>
+                                    </button>
+
+                                    {!! Form::close() !!}
                             @endif
 
                         </span>
@@ -173,18 +175,12 @@
                                 <h2 class="button">Give a Review</h2>
                             </div>
                             <div id="respond" class="comment-respond">
-                                <h3 id="reply-title" class="comment-reply-title">Be the first to review “Professional JavaScript for Web Developers”
+                                <h3 id="reply-title" class="comment-reply-title">
+                                    Be the first to review “Professional JavaScript for Web Developers”
                                 </h3>
 
-                                <form action="#" method="post" id="commentform" class="comment-form" _lpchecked="1">
-                                    <p class="comment-form-comment">
-                                        <label for="comment" class="greview">Your Review</label>
-                                        <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>
-                                    </p>
-                                    <p class="form-submit">
-                                        <input name="submit" type="submit" id="submit" class="submit" value="Submit">
-                                    </p>
-                                </form>
+                                {{--Comment Submit form--}}
+                                @include('pages.comment')
                             </div>
                             <!-- #respond -->
                         </div>

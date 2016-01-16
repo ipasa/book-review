@@ -9,6 +9,9 @@ Route::get('/alluser', function () {
 
 });
 
+//Single Book Show by Detail's
+Route::get('book/{id}', 'BookController@singleBook');
+
 #Favorites
 //Route::get('/favorites', function(){
 //    $favorites      =   \App\Book::all();
@@ -18,15 +21,7 @@ Route::get('/alluser', function () {
 //    }
 //    return view('favoriteBook.index', compact('favorites'));
 //});
-Route::post('favorites', ['as' => 'favorites.store', function () {
-    Auth::user()->favorites()->attach(Input::get('book-id'));
-    return redirect('/');
-}]);
-#Remove from Favorites
-Route::delete('favorites/{bookId}', ['as' => 'favorites.destroy', function ($bookid) {
-    Auth::user()->favorites()->detach($bookid);
-    return redirect('/');
-}]);
+
 Route::get('/user/{userId}/favorites', function ($userId) {
     if (Auth::check()) {
         $favorites_name = \App\User::findOrFail($userId);
@@ -39,6 +34,15 @@ Route::get('/user/{userId}/favorites', function ($userId) {
     $favorites_list = DB::table('favorites')->whereUserId($userId)->lists('book_id');
     return view('favoriteBook.user', compact('favorites', 'favorites_list'))->with('name', $favorites_name);
 });
+Route::post('favorites', ['as' => 'favorites.store', function () {
+    Auth::user()->favorites()->attach(Input::get('book-id'));
+    return redirect('/');
+}]);
+#Remove from Favorites
+Route::delete('favorites/{bookId}', ['as' => 'favorites.destroy', function ($bookid) {
+    Auth::user()->favorites()->detach($bookid);
+    return redirect('/');
+}]);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -49,9 +53,6 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-//Single Book Show by Detail's
-Route::get('book/{id}', 'BookController@singleBook');
-
 //Category Showing
 Route::get('category/{id}', 'BookController@categoryShow');
 
@@ -61,9 +62,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/user/{profile}', 'ProfilesController@show');
 Route::get('test1', array('before' => 'csrf', 'uses' => function () {
-//    $data = Input::all();
-//    if (Request::ajax()) {
-      echo Input::get('score_tag');
-//    }
-
+    echo Input::get('comment');
 }));
+
+Route::get('comment', ['as'=>'comment.show','uses'=>'CommentController@index']);
+Route::post('book/{id}/comment', ['as'=>'comment.create','uses'=>'CommentController@create']);
+//Route::post('comment-test', ['as'=>'comment.create-test','uses'=>'BookCommentController@bookcomment']);

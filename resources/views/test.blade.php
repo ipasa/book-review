@@ -17,11 +17,11 @@
                     dataType: 'json',
                     success: function (data) {
                         $.ajax({
-                            url: "http://localhost:8000/test1",
+                            url: "{{link_to('test1')}}",
                             data: {score_tag: data.score_tag},
                             type: 'GET',
                             success: function (data) {
-                                alert(data);
+                                //alert(data);
                             }
                         })
                     },

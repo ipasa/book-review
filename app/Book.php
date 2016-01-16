@@ -18,4 +18,9 @@ class Book extends Model{
     public function authors(){
         return $this->belongsToMany('App\Author');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
