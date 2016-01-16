@@ -92,9 +92,12 @@
                             {{--<span class="love-text">@include('partials/form-button') </span>--}}
 
                             @if(Auth::check())
-                                <?php $favorited=in_array($bookdetails->id, $favorites_list); ?>
-                                {!! Form::open(['route' => 'favorites.store']) !!}
-                                {!! Form::hidden('book-id', $bookdetails->id) !!}
+                                @if($favorited=in_array($bookdetails->id, $favorites_list))
+                                    {!! Form::open(['method'=>'DELETE', 'route' => ['favorites.destroy', $bookdetails->id]]) !!}
+                                @else
+                                    {!! Form::open(['route' => 'favorites.store']) !!}
+                                    {!! Form::hidden('book-id', $bookdetails->id) !!}
+                                @endif
 
                                 <button type="submit" class="btn-naked">
                                     <i class="fa fa-heart {{ $favorited ? 'favorited':'not-favorated' }}"></i>

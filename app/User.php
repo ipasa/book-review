@@ -44,6 +44,6 @@ class User extends Model implements AuthenticatableContract,
 
     public function favorites()
     {
-        return $this->belongsToMany('App\Book', 'favorites');
+        return $this->belongsToMany('App\Book', 'favorites')->withTimestamps();
     }
 }

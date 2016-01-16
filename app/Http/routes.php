@@ -20,12 +20,12 @@ Route::get('/alluser', function () {
 //});
 Route::post('favorites', ['as' => 'favorites.store', function () {
     Auth::user()->favorites()->attach(Input::get('book-id'));
-    return redirect('favorites');
+    return redirect('/');
 }]);
 #Remove from Favorites
 Route::delete('favorites/{bookId}', ['as' => 'favorites.destroy', function ($bookid) {
     Auth::user()->favorites()->detach($bookid);
-    return redirect('favorites');
+    return redirect('/');
 }]);
 Route::get('/user/{userId}/favorites', function ($userId) {
     if (Auth::check()) {
