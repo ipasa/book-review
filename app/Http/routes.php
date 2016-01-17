@@ -61,10 +61,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
 });
 Route::get('/user/{profile}', 'ProfilesController@show');
+
 Route::get('test1', array('before' => 'csrf', 'uses' => function () {
     echo Input::get('comment');
 }));
 
-Route::get('comment', ['as'=>'comment.show','uses'=>'CommentController@index']);
-Route::post('book/{id}/comment', ['as'=>'comment.create','uses'=>'CommentController@create']);
-//Route::post('comment-test', ['as'=>'comment.create-test','uses'=>'BookCommentController@bookcomment']);
+Route::get('comment', ['as' => 'comment.show', 'uses' => 'CommentController@index']);
+Route::get('comment_save', 'CommentController@create');
