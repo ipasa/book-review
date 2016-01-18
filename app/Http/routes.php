@@ -68,3 +68,6 @@ Route::get('test1', array('before' => 'csrf', 'uses' => function () {
 
 Route::get('comment', ['as' => 'comment.show', 'uses' => 'CommentController@index']);
 Route::get('comment_save', 'CommentController@create');
+
+//you can follow this people
+Route::get('/canfollow', ['as'=>'can-follow', 'uses'=>'FollowController@index']);
