@@ -99,9 +99,6 @@
                                     {!! Form::hidden('book-id', $bookdetails->id) !!}
                                 @endif
 
-                                    <button type="submit" class="btn-naked">
-                                        <i class="fa fa-heart {{ $favorited ? 'favorited':'not-favorated' }}"></i>
-                                    </button>
 
                                     {!! Form::close() !!}
                             @endif
@@ -198,43 +195,9 @@
 
                     <div class="user_indivisual_review">
 
-                        <div class="single_user">
-                            <img src="{{ URL::asset('images/user/david-bushell-reviewer.png') }}" alt="">
-                            <span class="reviewer_name">— David Bushell</span>
-                            <!-- USER SINGLE RATING -->
-                                    <span>
-                                        <p class="stars reviewer_rating">
-                                            <div class="grating">Rating - </div>
-                                            <span>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                        </p>
-                                    </span>
-                            <!-- END OF USER SINGLE RATING -->
-                            <blockquote class="user_blockquote">“I’ll cut to the chase for those deliberating a purchase: it’s well worth the cover price. The eBook edition is a steal! This book establishes a mindset of understanding and exploring the medium. It embraces the breadth of its domain and will set you on an exciting path.cut to the chase for those deliberating a purchase: it’s well worth the cover price. The eBook edition is a steal! This book establishes a mindset of understanding and exploring the medium. It embraces the breadth of its domain and will set you on an exciting path.”</blockquote>
-                        </div>
+                        {{--Single person comment--}}
+                        @include('partials/comment-show')
 
-                        <div class="single_user">
-                            <img src="{{ URL::asset('images/user/david-bushell-reviewer.png') }}" alt="">
-                            <span class="reviewer_name">— David Bushell</span>
-                                    <span>
-                                        <p class="stars reviewer_rating">
-                                            <div class="grating">Rating - </div>
-                                            <span>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                        </p>
-                                    </span>
-                            <blockquote class="user_blockquote">“I’ll cut to the chase for those deliberating a purchase: it’s well worth the cover price. The eBook edition is a steal! This book establishes a mindset of understanding and exploring the medium. It embraces the breadth of its domain and will set you on an exciting path.cut to the chase for those deliberating a purchase: it’s well worth the cover price. The eBook edition is a steal! This book establishes a mindset of understanding and exploring the medium. It embraces the breadth of its domain and will set you on an exciting path.”</blockquote>
-                        </div>
                     </div>
                 </div>
                 <!-- END OF BOOKREVIEW BY USER ALL -->

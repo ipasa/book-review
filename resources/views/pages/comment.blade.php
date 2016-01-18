@@ -33,7 +33,7 @@
     })
 </script>
 @if(!Auth::check())
-    <p>Please login first</p>
+    <p>Please {!! link_to('auth/login', 'login')  !!} first.</p>
 @else
     {{--{!! Form::open([],array('id' => 'commentform','class' => 'comment-form')) !!}--}}
     {!! Form::open() !!}
