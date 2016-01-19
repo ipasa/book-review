@@ -8246,7 +8246,8 @@ a.single-tags:hover {
 .favorited{
   color: #CC2936;
 }
-.favorited:hover{
+.favorited:hover::after{
+  content: ' Unfavorite';
   color: #2b303b;
 }
 

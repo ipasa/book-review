@@ -71,3 +71,8 @@ Route::get('comment_save', 'CommentController@create');
 
 //you can follow this people
 Route::get('/canfollow', ['as'=>'can-follow', 'uses'=>'FollowController@index']);
+
+//Streaming in our site
+Route::get('/stream',['as'=>'stream-show', 'uses'=>'StreamController@show']);
+
+

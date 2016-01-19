@@ -15,6 +15,7 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>{!! link_to_route('stream-show', 'Stream') !!}</li>
                 <li>{!! link_to('/alluser', 'All User List') !!}</li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
