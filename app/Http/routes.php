@@ -75,4 +75,10 @@ Route::get('/canfollow', ['as'=>'can-follow', 'uses'=>'FollowController@index'])
 //Streaming in our site
 Route::get('/stream',['as'=>'stream-show', 'uses'=>'StreamController@show']);
 
+//Error Page
+Route::get('/error', function(){
+    return view('error.error');
+});
+
+
 

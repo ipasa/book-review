@@ -23,7 +23,9 @@ class ProfilesController extends Controller
             $user   =   User::with('profile')->findOrFail($id);
         }
         catch(ModelNotFoundException $e){
-            return redirect('home');
+//            return redirect('error')->with('msg', 'The Message');
+            \Session::flash('message', "This user does not exist in our system");
+            return redirect('error');
         }
         return view('profiles.show')->withUser($user);
     }

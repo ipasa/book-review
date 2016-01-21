@@ -433,6 +433,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+
         $("#submit").click(function () {
             var comment = $('textarea#comment').val();
 //            alert(comment);
@@ -446,7 +447,7 @@
                 success: function (data) {
 //                    alert(data.score_tag)
                     $.ajax({
-                        url: "<?php echo url('comment_save');?>",
+                        url: "<?php  echo url('comment_save');?>",
                         data: {score_tag: data.score_tag, book_id: book_id, comment: comment},
                         type: 'GET',
                         success: function (data) {
@@ -455,26 +456,25 @@
                         }, error: function (data) {
                             console.log(data)
                         }
-                    })
+                    });
                 },
                 error: function () {
                     alert("ERROR");
                 }
-            })
-        })
-    })
-</script>
-<script>
-    $(document).ready(function() {
-
-        $('.showmore_one').showMore({
-            speedDown: 300,
-            speedUp: 300,
-            height: '100px',
-            showText: 'Show more <i class="fa fa-chevron-down"></i>',
-            hideText: 'Show less <i class="fa fa-chevron-up"></i>'
+            });
         });
     });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.showmore_one').showMore({
+        speedDown: 300,
+        speedUp: 300,
+        height: '10px',
+        showText: 'Show more <i class="fa fa-chevron-down"></i>',
+        hideText: 'Show less <i class="fa fa-chevron-up"></i>'
+    });
+  });
 </script>
 
 </body>
