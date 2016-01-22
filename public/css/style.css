@@ -8484,10 +8484,6 @@ a.single-tags:hover {
     color: #CC2936;
 }
 
-.favorited:hover::after {
-    content: ' Unfavorite';
-    color: #2b303b;
-}
 
 /*Last Design Editing*/
 .mar-top-50 {
@@ -8731,10 +8727,10 @@ a.green {
     padding: 0;
 }
 
-.fa {
-    font-size: 22px;
-    padding-right: 15px;
-}
+/*.fa {*/
+    /*font-size: 22px;*/
+    /*padding-right: 15px;*/
+/*}*/
 
 span.linktext {
     color: #337AB7;

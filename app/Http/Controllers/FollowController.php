@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Follow;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -88,14 +89,23 @@ class FollowController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Follow a User
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+//        $followerID =   \Auth::id();
+//        $followedId =   \Input::get('userIdToFollow');
+//
+//        $follow = new Follow;
+//        $follow->follower_id    =   $followerID;
+//        $follow->followed_id    =   $followedId;
+//        $follow->save();
+
+        \Auth::user()->follows()->attach(\Input::get('userIdToFollow'));
+
+        //dd($followerID);
+        return redirect('/home');
     }
 
     /**
@@ -133,13 +143,15 @@ class FollowController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destroy a Follow user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        \Auth::user()->follows()->detach($id);
+        return redirect('alluser');
+        //\Auth::user()->favorites()->detach($id);
     }
 }

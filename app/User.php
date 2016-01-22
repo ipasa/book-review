@@ -51,4 +51,16 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function follows()
+    {
+        return $this->belongsToMany('App\Follow', 'follows', 'follower_id', 'followed_id');
+    }
+
+
+    public function isFollowedBy($currentUserId)
+    {
+        $idsWhoOtherUserFollows =   \DB::table('follows')->lists('followed_id');
+        return in_array($this->id, $idsWhoOtherUserFollows);
+    }
 }

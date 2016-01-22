@@ -11,6 +11,7 @@ class StreamController extends Controller
 {
     public function show()
     {
-        return view('pages.stream');
+        $users = \DB::table('favorites')->select('user_id', 'book_id', 'created_at')->paginate(15);
+        return view('pages.stream')->with('users',$users);
     }
 }

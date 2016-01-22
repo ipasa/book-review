@@ -5,8 +5,7 @@ Route::get('/home', 'HomepageController@homepage');
 
 Route::get('/alluser', function () {
     $users = \App\User::all();
-    return view('pages/alluser')->with('users', $users);
-
+    return view('pages.alluser')->with('users', $users);
 });
 
 //Single Book Show by Detail's
@@ -71,6 +70,14 @@ Route::get('comment_save', 'CommentController@create');
 
 //you can follow this people
 Route::get('/canfollow', ['as'=>'can-follow', 'uses'=>'FollowController@index']);
+Route::post('follows', [
+    'as'    =>  'follows_path',
+    'uses'  =>  'FollowController@store'
+]);
+Route::delete('follows/{id}', [
+    'as'    =>  'follow_path',
+    'uses'  =>  'FollowController@destroy'
+]);
 
 //Streaming in our site
 Route::get('/stream',['as'=>'stream-show', 'uses'=>'StreamController@show']);
