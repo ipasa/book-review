@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Follow;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,15 +18,26 @@ class FollowController extends Controller
      */
     public function index()
     {
-        for($i=1;$i<=30;$i++){
+        $authUserId =   \Auth::id();
+        $users      =   User::all();
+
+        /**
+         * Looping for the perfect User
+         *
+         * @return \Illuminate\Http\Response
+         */
+         //for($i=1;$i<=10;$i++){
+        foreach($users as $user){
+            $i  =   $user->id;
+            $user_name  =   $user->name;
             $favoritesA = \DB::table('favorites')->where('user_id', $i)->count();
-            $favoritesB = \DB::table('favorites')->where('user_id', '3')->count();
+            $favoritesB = \DB::table('favorites')->where('user_id', $authUserId)->count();
 
             $favoritesAlist = \DB::table('favorites')->select('book_id')->where('user_id',$i)->lists('book_id');
 
 
             $favoritesAintersetB = \DB::table('favorites')
-                ->where('user_id', '3')
+                ->where('user_id', $authUserId)
                 ->whereIn('book_id',$favoritesAlist)
                 ->count();
 
@@ -33,8 +45,9 @@ class FollowController extends Controller
             $liftAofB   =   $favoritesAintersetB/sqrt($favoritesB*$favoritesA);
 
             $items[] = array(
-                'user_id' => $i,
-                'co-efficient' => $liftAofB
+                'user_id'       =>  $i,
+                'user_name'     =>  $user_name,
+                'co-efficient'  =>  $liftAofB
             );
         }
 
