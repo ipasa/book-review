@@ -15,6 +15,8 @@
                             <form id="search-form" action="#">
                                 <input type="search" placeholder="Search For The Book"
                                        class="textInput"
+                                       v-model="query"
+                                       v-on="keyup:search | key 'enter'"
                                 >
                             </form>
                         </div>
@@ -24,7 +26,7 @@
         </div>
 
         <div class="results">
-            <article v-for="user in users">
+            <article v-repeat="user:users">
                 <h2>@{{ user.name }}</h2>
                 <h2>@{{ user.objectID }}</h2>
             </article>
@@ -35,21 +37,25 @@
 
     </div>
     <script src="http://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.15/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.js"></script>
     <script>
         new Vue({
-            el:'body',
+            el      :'body',
+            data    :{query:'', users:[]},
+            ready   :function(){
 
-            data:{users:[]},
+                this.client  =   algoliasearch("HODIKEQUVB", "8d13cfb38b66a0cdc44933fc3fb8b6a3");
+                this.index   =   this.client.initIndex('getstarted_actors');
+            },
+            methods :{
+                search:function(){
 
-            ready: function(){
-                var client  =   algoliasearch("HODIKEQUVB", "8d13cfb38b66a0cdc44933fc3fb8b6a3");
-                var index   =   client.initIndex('getstarted_actors');
-
-                index.search('Michael Doven', function(error, results){
-                    this.users  =   results.hits;
-                }.bind(this));
+                    this.index.search(this.query, function(error, results){
+                        this.users  =   results.hits;
+                    }.bind(this));
+                }
             }
+
 
         });
 
