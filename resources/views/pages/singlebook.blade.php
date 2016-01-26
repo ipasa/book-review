@@ -78,7 +78,7 @@
             <!-- BOOK DESCRIPTION AND REVIEw SECTION -->
             <section class="col-md-9 content_inner">
                 <div class="col-md-5">
-                    <img src="{{ URL::asset('uploads/'.$bookdetails->cover_image) }}" alt="" class="img-responsive book-image">
+                    <img src="{{ $bookdetails->cover_image }}" alt="" class="img-responsive book-image">
 
                     <!-- WISH LIST SECTION -->
                         {{--<div class="wishlist-button white-bg">--}}

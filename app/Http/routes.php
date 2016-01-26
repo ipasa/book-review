@@ -87,5 +87,11 @@ Route::get('/error', function(){
     return view('error.error');
 });
 
+//Search Page
+Route::get('search',[
+    'as'    =>  'search',
+    'uses'  =>  'SearchController@index'
+]);
+
 
 

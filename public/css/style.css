@@ -8745,3 +8745,201 @@ span.linktext {
         margin-top: 30px;
     }
 }
+
+/*Search Page Design*/
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.logo {}
+.logo a {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 12px;
+    padding-right: 14px;
+    padding-top: 10px;
+    position: relative;
+    z-index: 700;
+}
+.logo a img {}
+.search-animation {
+    height: 3px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+/*.search-animation .anim-border {*/
+    /*animation-duration: 1s;*/
+    /*animation-iteration-count: infinite;*/
+    /*animation-name: search-border;*/
+    /*animation-timing-function: linear;*/
+    /*background: #0be370 none repeat scroll 0 0;*/
+    /*display: block;*/
+    /*height: 2px;*/
+    /*left: 0;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+/*}*/
+@-webkit-keyframes search-border {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+@keyframes search-border {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+.search-form {
+    margin: 0 0 40px;
+}
+#search-form {}
+#search-form .textInput {
+    background: #fff none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 4px;
+    font-family: roboto;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 300;
+    height: 70px;
+    letter-spacing: -0.04em;
+    outline: medium none;
+    padding: 0;
+    width: 100%;
+}
+.single-sidebar, .result-container {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.left-single-sidebar {
+    border-color: #000
+}
+.left-single-sidebar ul {}
+.left-single-sidebar ul li {}
+.left-single-sidebar ul li a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 11px;
+    font-weight: 400;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 100%;
+    display: block;
+}
+.left-single-sidebar ul li:last-child a {
+    border: none;
+}
+.left-single-sidebar ul li.active a {
+    font-weight: 700;
+}
+.sidebar-title, .heading-title {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+.tag {}
+.tag a {
+    background: #fafafa none repeat scroll 0 0;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.44);
+    display: inline-block;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin: 0 8px 8px 0;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+.tag a:hover {
+    background: #fff none repeat scroll 0 0;
+    border-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.8);
+}
+.header {}
+.header .image {
+    float: left;
+}
+.header .image a {
+    display: block;
+    overflow: hidden;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.header .image a img {
+    height: 100%;
+}
+.header .right-content {
+    color: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    vertical-align: middle;
+    text-rendering: auto;
+}
+.name-title {}
+.name-title a {
+    color: #00ab6b;
+    font-weight: 300;
+    text-decoration: none;
+}
+.date {}
+.date a {
+    color: rgba(0, 0, 0, 0.44);
+    font-size: 12px;
+    line-height: 1.1;
+}
+.result-content {}
+.result-content h1 {
+    color: rgba(0, 0, 0, 0.8);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+    margin-left: -1.9375px;
+}
+.result-content p {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.004em;
+    line-height: 1.5;
+    margin-top: 14px;
+}
+.result-content a.read-more {
+    border-radius: 0;
+    border-width: 0;
+    font-size: 12px;
+    box-shadow: none;
+    color: rgba(0, 0, 0, 0.3);
+    height: auto;
+    line-height: inherit;
+    padding: 0;
+    vertical-align: baseline;
+    white-space: normal;
+}
+.result-content a.read-more:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
