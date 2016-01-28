@@ -13,7 +13,9 @@
                     <div class="col-sm-12">
                         <div class="search-form">
                             <form id="search-form" action="#">
-                                <input type="search" placeholder="Search For The Book"
+                                <input id="typeahead"
+                                       type="search"
+                                       placeholder="Search For The Book"
                                        class="textInput"
                                        v-model="query"
                                        v-on="keyup:search | key 'enter'"
@@ -25,20 +27,81 @@
             </div>
         </div>
 
-        <div class="results">
-            <article v-repeat="user:users">
-                <h2>@{{ user.name }}</h2>
-                <h2>@{{ user.objectID }}</h2>
-            </article>
+        {{--<div class="results">--}}
+            {{--<article v-repeat="user:users">--}}
+                {{--<h2>@{{ user.name }}</h2>--}}
+                {{--<h2>@{{ user.objectID }}</h2>--}}
+            {{--</article>--}}
+        {{--</div>--}}
+
+        {{--Search Result Area--}}
+        <div class="search-result-area">
+            <div class="container">
+                <div class="row">
+                    <div class="left-sidebar col-md-2">
+                        <div class="left-single-sidebar single-sidebar nav">
+                            <ul>
+                                <li class="active"><a href="#">All</a></li>
+                                <li><a href="#">people</a></li>
+                                <li><a href="#">Publications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="result-container">
+                            <h2 class="heading-title">Stories</h2>
+                            <article v-repeat="user:users">
+                                <div class="single-result">
+                                    {{--<div class="header">--}}
+                                        {{--<div class="image">--}}
+                                            {{--<a href="#"><img src="img/avatar.jpg" alt="" /></a>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="right-content">--}}
+                                            {{--<div class="name-title">--}}
+                                                {{--<a href="#">Kevin Rose</a> in <a href="#">I. M. H. O.</a>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="date"><a href="#">Aug 29, 2012</a> . <span>1 min read</span></div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    <div class="result-content">
+                                        <h1>@{{ user.name }}</h1>
+                                        <p>@{{ user.objectID }}</p>
+                                        {{--<a href="#" class="read-more">Read more…</a>--}}
+                                    </div>
+                                    {{--<div class="footer">--}}
+                                        {{--<button class="like left"><i class="fa fa-heart-o"></i> 308</button>--}}
+                                        {{--<button class="bookmark right"><i class="fa fa-bookmark-o"></i></button>--}}
+                                    {{--</div>--}}
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="right-sidebar col-md-3">
+                        <div class="right-single-sidebar single-sidebar tags">
+                            <h2 class="sidebar-title">Tags</h2>
+                            <ul class="tag">
+                                <a href="#">html5</a>
+                                <a href="#">html</a>
+                                <a href="#">css</a>
+                                <a href="#">css3</a>
+                                <a href="#">jquery</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
         <div style="padding-top: 380px"></div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/jquery/2.2.0/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/typeahead.js/0.11.1/typeahead.jquery.js"></script>
     <script src="http://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.1/vue.js"></script>
     <script>
+
         new Vue({
             el      :'body',
             data    :{query:'', users:[]},
@@ -46,6 +109,15 @@
 
                 this.client  =   algoliasearch("HODIKEQUVB", "8d13cfb38b66a0cdc44933fc3fb8b6a3");
                 this.index   =   this.client.initIndex('getstarted_actors');
+
+                $('#typeahead')
+                    .typeahead(null, {
+                        source      :   this.index.ttAdapter(),
+                        displayKey  :   'name'
+                    })
+                    .on('typeahead:select', function(e, suggestion){
+                        this.query  =   suggestion.name;
+                    }.bind(this));
             },
             methods :{
                 search:function(){

@@ -1,5 +1,7 @@
 <?php
 
+//use Illuminate\Http\Request;
+
 Route::get('/', 'HomepageController@index');
 Route::get('/home', 'HomepageController@homepage');
 
@@ -92,6 +94,12 @@ Route::get('search',[
     'as'    =>  'search',
     'uses'  =>  'SearchController@index'
 ]);
+
+//Route::get('/test11', function (\App\Contracts\Search $search, Request $request) {
+//    $results =   $search->index('getstarted_actors')
+//                        ->get($request->name);
+//    dd($results);
+//});
 
 
 

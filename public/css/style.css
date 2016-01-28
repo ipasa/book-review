@@ -8943,3 +8943,25 @@ span.linktext {
 .result-content a.read-more:hover {
     color: rgba(0, 0, 0, 0.6);
 }
+
+/*Auto Complete Design Section*/
+.tt-menu{
+    width: 100%;
+    border:1px solid #e3e3e3;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+}
+.tt-suggestion{
+    padding: 20px 10px;
+    background: white;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.tt-cursor{
+    background: #e3e3e3;
+}
+
+
+
+
