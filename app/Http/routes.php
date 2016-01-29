@@ -93,4 +93,3 @@ Route::get('search',[
     'uses'  =>  'SearchController@index'
 ]);
 
-

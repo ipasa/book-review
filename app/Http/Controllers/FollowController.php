@@ -44,11 +44,13 @@ class FollowController extends Controller
             //Calculation of lift
             $liftAofB   =   $favoritesAintersetB/sqrt($favoritesB*$favoritesA);
 
-            $items[] = array(
-                'user_id'       =>  $i,
-                'user_name'     =>  $user_name,
-                'co-efficient'  =>  $liftAofB
-            );
+            if($liftAofB>0.5){
+                $items[] = array(
+                    'user_id'       =>  $i,
+                    'user_name'     =>  $user_name,
+                    'co-efficient'  =>  $liftAofB
+                );
+            }
         }
 
         function array_sort($array, $on, $order=SORT_ASC)
