@@ -64,8 +64,8 @@
                                         {{--</div>--}}
                                     {{--</div>--}}
                                     <div class="result-content">
-                                        <h1>@{{ user.name }}</h1>
-                                        <p>@{{ user.objectID }}</p>
+                                        <h1>@{{ user.title }}</h1>
+                                        <p>@{{ user.description }}</p>
                                         {{--<a href="#" class="read-more">Read more…</a>--}}
                                     </div>
                                     {{--<div class="footer">--}}
@@ -108,15 +108,15 @@
             ready   :function(){
 
                 this.client  =   algoliasearch("HODIKEQUVB", "8d13cfb38b66a0cdc44933fc3fb8b6a3");
-                this.index   =   this.client.initIndex('getstarted_actors');
+                this.index   =   this.client.initIndex('books');
 
                 $('#typeahead')
                     .typeahead(null, {
                         source      :   this.index.ttAdapter(),
-                        displayKey  :   'name'
+                        displayKey  :   'title'
                     })
                     .on('typeahead:select', function(e, suggestion){
-                        this.query  =   suggestion.name;
+                        this.query  =   suggestion.title;
                     }.bind(this));
             },
             methods :{

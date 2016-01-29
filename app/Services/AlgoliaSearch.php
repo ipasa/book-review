@@ -17,8 +17,7 @@ class AlgoliaSearch implements Search
     }
     public function index($index)
     {
-        $this->index    =   $this->client->initIndex($index);
-        return $this;
+        return $this->index    =   $this->client->initIndex($index);
     }
 
     public function get($query)
