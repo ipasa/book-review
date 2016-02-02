@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,6 +19,12 @@ class StreamController extends Controller
 
         if(\Auth::check()){
             $userID =   \Auth::id();
+
+            /**
+             * Query for searching
+             * and
+             * inserting favorites
+             */
             $results = \DB::select( \DB::raw("
                             SELECT users.name as name, books.title as title, type
                             FROM users,books,favorites
@@ -34,6 +41,11 @@ class StreamController extends Controller
                 );
             }
 
+            /**
+             * Query for searching
+             * and
+             * inserting Comments
+             */
             $results = \DB::select( \DB::raw("
                                     SELECT users.name as name, books.title as title, type
                                     FROM users,books,comments
@@ -50,6 +62,29 @@ class StreamController extends Controller
                 );
             }
 
+            /**
+             * Query for searching
+             * and
+             * inserting Follows
+             */
+            $followStream    =   \DB::select( \DB::raw("
+                                    SELECT DISTINCT follower_id,followed_id,type
+                                    FROM follows,users
+                                    where follows.follower_id=users.id
+                                    AND users.id IN (SELECT follows.followed_id FROM follows WHERE follower_id=$userID)")
+            );
+            foreach ($followStream as $result) {
+                $result =   array($result);
+
+                $follower_name   =  User::findOrNew($result[0]->follower_id);
+                $followed_name   =  User::findOrNew($result[0]->followed_id);
+
+                $dataArray[]  =   array(
+                    'col1'  =>  $follower_name->name,
+                    'col2'  =>  $followed_name->name,
+                    'col3'  =>  $result[0]->type
+                );
+            }
 
             return view('pages.stream')->with('items', $dataArray);
         }

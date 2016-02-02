@@ -60,7 +60,8 @@ class User extends Model implements AuthenticatableContract,
 
     public function isFollowedBy($currentUserId)
     {
-        $idsWhoOtherUserFollows =   \DB::table('follows')->lists('followed_id');
+        $idsWhoOtherUserFollows =   \DB::table('follows')->where('follower_id', \Auth::id())->lists('followed_id');
+        //dd($idsWhoOtherUserFollows);
         return in_array($this->id, $idsWhoOtherUserFollows);
     }
 }
