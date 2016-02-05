@@ -3,10 +3,7 @@
 Route::get('/', 'HomepageController@index');
 Route::get('/home', 'HomepageController@homepage');
 
-Route::get('/alluser', function () {
-    $users = \App\User::all();
-    return view('pages.alluser')->with('users', $users);
-});
+Route::get('/alluser', 'FollowController@alluser');
 
 //Single Book Show by Detail's
 Route::get('book/{id}', 'BookController@singleBook');

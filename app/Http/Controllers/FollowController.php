@@ -50,6 +50,7 @@ class FollowController extends Controller
                     'user_name'     =>  $user_name,
                     'co-efficient'  =>  $liftAofB
                 );
+
             }
         }
 
@@ -168,5 +169,11 @@ class FollowController extends Controller
         \Auth::user()->follows()->detach($id);
         return redirect('alluser');
         //\Auth::user()->favorites()->detach($id);
+    }
+
+    public function alluser()
+    {
+        $users      =   User::all();
+        return view('pages.alluser')->with('users', $users);
     }
 }
