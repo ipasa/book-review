@@ -64,7 +64,7 @@
                                         {{--</div>--}}
                                     {{--</div>--}}
                                     <div class="result-content">
-                                        <h1>@{{ user.title }}</h1>
+                                        <a href="http://localhost:8000/book/@{{ user.id }}"><h1>@{{ user.title }}</h1></a>
                                         <p>@{{ user.description }}</p>
                                         {{--<a href="#" class="read-more">Read more…</a>--}}
                                     </div>
@@ -113,7 +113,18 @@
                 $('#typeahead')
                     .typeahead(null, {
                         source      :   this.index.ttAdapter(),
-                        displayKey  :   'title'
+                        displayKey  :   'title',
+                        templates   :   {
+                            suggestion: function (hit) {
+                                return(
+                                        '<div>' +
+                                                '<span class="name">'+ hit.title +'</span>'+'<br>'+
+                                                '<span class="author">'+ hit.isbn +'</span>'+'<br>'+
+                                                '<span class="catagory">'+ hit.category_id +'</span>'+
+                                        '</div>'
+                                )
+                            }
+                        }
                     })
                     .on('typeahead:select', function(e, suggestion){
                         this.query  =   suggestion.title;
