@@ -20,11 +20,11 @@ class BookSuggestion extends Controller
         $n      =   10;
 
         $dataArray1 = \DB::select(\DB::raw("
-            SELECT d.itemID1 as 'item', sum(d.sum + d.count*r.ratingValue)/sum(d.count) as 'avgrat'
-            FROM  rating r, dev d
-            WHERE r.userID=$userID
-            AND d.itemID1 NOT IN (SELECT itemID FROM rating WHERE userID=$userID)
-            AND d.itemID2=r.itemID
+            SELECT d.itemID1 as 'item', sum(d.sum + d.count*r.score_tag)/sum(d.count) as 'avgrat'
+            FROM  comments r, dev d
+            WHERE r.user_id=$userID
+            AND d.itemID1 NOT IN (SELECT book_id FROM comments WHERE user_id=$userID)
+            AND d.itemID2=r.book_id
             GROUP BY d.itemID1 ORDER BY avgrat DESC LIMIT $n")
         );
 

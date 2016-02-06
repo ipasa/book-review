@@ -211,41 +211,68 @@
 
             <!-- SEARCH SECTION FOR SIDEBAR -->
             <aside class="col-md-3">
-                <div class="book_search widget_book_search">
-                    <div class="widget_content">
-                        <h2 class="widget_title">Find
-                            <strong>Product</strong>
-                        </h2>
-                        <form action="http://tokokoodemo.us/papirus/books/" method="get" role="search" _lpchecked="1">
-                            <input type="text" name="s" placeholder="Find Products">
-                            <select name="product_cat" id="product_cat" class="postform">
-                                <option value="0" selected="selected">All Categories</option>
-                                <option class="level-0" value="programming">Programming</option>
-                                <option class="level-0" value="web-design">Web Design</option>
-                                <option class="level-0" value="javascript">Javascript</option>
-                                <option class="level-0" value="web-application">Web Application</option>
-                                <option class="level-0" value="html5">HTML5</option>
-                                <option class="level-0" value="seo">SEO</option>
-                            </select>
+                <div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">
+                    <h2 class="section_title">RELATED PRODUCTS</h2>
 
-                            <select name="authors" id="authors" class="postform">
-                                <option value="0" selected="selected">All Authors</option>
-                                <option class="level-0" value="thoriq-firdaus">Thoriq Firdaus</option>
-                                <option class="level-0" value="tim-kadlec">Tim Kadlec</option>
-                                <option class="level-0" value="steve-krug">Steve Krug</option>
-                                <option class="level-0" value="susan-weinschenk">Susan Weinschenk</option>
-                                <option class="level-0" value="austin-kleon">Austin Kleon</option>
-                                <option class="level-0" value="ellen-lupton">Ellen Lupton</option>
-                                <option class="level-0" value="patrick-mcneil">Patrick McNeil</option>
-                                <option class="level-0" value="brian-miller">Brian Miller</option>
-                                <option class="level-0" value="kyle-simpson">Kyle Simpson</option>
-                                <option class="level-0" value="nicholas-c-zakas">Nicholas C. Zakas</option>
-                            </select>
+                    <!-- RELATED PRODUCTS slider -->
+                    <ul class="products">
 
-                            <input type="submit" class="button" value="Search">
-                            <input type="hidden" name="post_type" value="product">
-                        </form>
-                    </div>
+                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
+                            <div class="grid">
+                                <figure class="effect-sadie">
+                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
+                                    <figcaption>
+                                        <h2>Holy <span>Sadie</span></h2>
+                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
+                                        <a href="#">View more</a>
+                                        <!-- RATING SECTION -->
+                                        <div class="row model-review">
+                                            <div class="col-md-12 col-xs-12 col-sm-4">
+                                                <p class="stars">
+                                            <span>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- RATING SECTION -->
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </li>
+
+                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
+
+                            <div class="grid">
+                                <figure class="effect-sadie">
+                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
+                                    <figcaption>
+                                        <h2>Holy <span>Sadie</span></h2>
+                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
+                                        <a href="#">View more</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </li>
+
+                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
+                            <div class="grid">
+                                <figure class="effect-sadie">
+                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
+                                    <figcaption>
+                                        <h2>Holy <span>Sadie</span></h2>
+                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
+                                        <a href="#">View more</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- RELATED PRODUCTS slider -->
                 </div>
             </aside>
             <!-- END OF SEARCH SECTION FOR SIDEBAR -->
