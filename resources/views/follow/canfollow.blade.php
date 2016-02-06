@@ -13,12 +13,21 @@
 
 @section('content')
     <div class="container mar-top-50">
-        <div class="list-group">
+        <header class="Header-favorite">
+            <div class="Banner">
+                <h3 class="Banner__heading utility-center">
+                    {{ Auth::user()->name }} You Can Follow this people
+                </h3>
+            </div>
+        </header>
+
+        <div class="list-group col-md-6 col-md-offset-3" style="margin-top: -40px">
             @foreach($items as $item)
                 @unless($item['user_id']==Auth::id())
                     <a href="http://localhost:8000/user/{{$item['user_id']}}"
-                       class="list-group-item">{{ $item['user_name'] }}
+                       class="list-group-item">{{ $item['user_name'] }} - {{ $item['co-efficient'] }}
                     </a>
+
                 @endunless
             @endforeach
         </div>

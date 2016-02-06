@@ -54,7 +54,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function follows()
     {
-        return $this->belongsToMany('App\Follow', 'follows', 'follower_id', 'followed_id');
+        return $this->belongsToMany('App\Follow', 'follows', 'follower_id', 'followed_id')->withTimestamps();
     }
 
 

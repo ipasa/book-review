@@ -90,3 +90,6 @@ Route::get('search',[
     'uses'  =>  'SearchController@index'
 ]);
 
+//Suggesting Related Books
+Route::get('suggestion', ['as'=>'book-suggestion', 'uses'=>'BookSuggestion@userSuggestion']);
+

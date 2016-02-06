@@ -27,6 +27,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>{!! link_to('/user/'.Auth::user()->id, 'Your Profile') !!}</li>
                             <li>{!! link_to('/user/'.Auth::user()->id.'/favorites', 'Your Favorites') !!}</li>
+                            <hr>
+                            <li>{!! link_to('/canfollow', 'Can Follow') !!}</li>
+                            <li>{!! link_to('/suggestion', 'Suggested Book') !!}</li>
+                            <hr>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>

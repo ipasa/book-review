@@ -21,7 +21,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 feed_shadow">
                             <div class="photo-box">
                                 <div class="image-wrap">
-                                    <img src="{{ URL::asset('uploads/book-300.jpg') }}">
+                                    <img src="{{ $aCategoryDetail->cover_image }}" height="400px">
                                     <div class="book-info">
                                         <p>{{ $aCategoryDetail->title }}</p>
                                     </div>
