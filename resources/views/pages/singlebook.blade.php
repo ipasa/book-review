@@ -189,7 +189,7 @@
 
                 <div class="col-md-12 review_section">
                     <div class="border-top-bottom">
-                        <h2 class="button">Review (2)</h2>
+                        <h2 class="button">Review ({{ $bookdetails->comments->count() }})</h2>
                     </div>
                     <div class="review_panel">
                         <h2>Book Review By Users</h2>

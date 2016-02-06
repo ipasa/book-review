@@ -23,54 +23,82 @@
                 {{--</ul>--}}
 
 
-                @if(Auth::check() && Auth::user()->id===$user->id)
-                    {!! link_to_route('profile.edit', 'Edit your profile', $user->id)  !!}
-                @endif
-            </div>
-        </div>
-
-        <div class="row panel">
-            <div class="col-md-4 bg_blur ">
-                <a href="#" class="follow_btn hidden-xs">Follow</a>
-            </div>
-            <div class="col-md-8  col-xs-12">
-                <img src="http://lorempixel.com/image_output/people-q-g-150-150-2.jpg"
-                     class="img-thumbnail picture hidden-xs"/>
-                <img src="http://lorempixel.com/image_output/people-q-g-150-150-2.jpg"
-                     class="img-thumbnail visible-xs picture_mob"/>
-
-                <div class="header">
-                    <h1>{{ $user->name }}</h1>
-                    <h4>{{ $user->profile->location }}</h4>
-                    <span>
-                        @if($user->profile->bio)
-                            {{ $user->profile->bio }}
-                        @endif
-                    </span>
-                </div>
+                {{--@if(Auth::check() && Auth::user()->id===$user->id)--}}
+                    {{--{!! link_to_route('profile.edit', 'Edit your profile', $user->id)  !!}--}}
+                {{--@endif--}}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12 col-xs-12 notification">
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i> 16</div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-heart-o fa-lg"></i> 14</div>
-                <div class="col-md-4 col-xs-4 well"><i class="fa fa-thumbs-o-up fa-lg"></i> 26</div>
+            <!-- code start -->
+            <div class="twPc-div col-md-4">
+                <a class="twPc-bg twPc-block"></a>
+
+                <div>
+                    <div class="twPc-button">
+                        <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+                        {{--<a href="https://twitter.com/mertskaplan" class="twitter-follow-button">Follow @mertskaplan</a>--}}
+                        @if(Auth::check())
+                            @unless($user->id===Auth::id())
+                                @include('partials.follow-form')
+                            @endunless
+
+                            @if(Auth::check() && Auth::user()->id===$user->id)
+                                <button class="btn mar-less">{!! link_to_route('profile.edit', 'Edit your profile', $user->id)  !!}</button>
+                            @endif
+                        @endif<!-- Twitter Button -->
+                    </div>
+
+                    <a title="Mert Salih Kaplan" href="https://twitter.com/mertskaplan" class="twPc-avatarLink">
+                        <img alt="Mert Salih Kaplan" src="https://pbs.twimg.com/profile_images/378800000352678934/34f9e192635975bf42e534434e2b6273_bigger.jpeg" class="twPc-avatarImg">
+                    </a>
+
+                    <div class="twPc-divUser">
+                        <div class="twPc-divName">
+                            <a href="https://twitter.com/mertskaplan">{{ $user->name }}</a>
+                        </div>
+                        <span>
+                            <a href="https://twitter.com/mertskaplan">@<span>mertskaplan</span></a>
+                        </span>
+                    </div>
+
+                    <div class="twPc-divStats">
+                        <ul class="twPc-Arrange">
+                            <li class="twPc-ArrangeSizeFit">
+                                <a href="https://twitter.com/mertskaplan" title="9.840 Tweet">
+                                    <span class="twPc-StatLabel twPc-block">Tweets</span>
+                                    <span class="twPc-StatValue">9.840</span>
+                                </a>
+                            </li>
+                            <li class="twPc-ArrangeSizeFit">
+                                <a href="https://twitter.com/mertskaplan/following" title="885 Following">
+                                    <span class="twPc-StatLabel twPc-block">Following</span>
+                                    <span class="twPc-StatValue">885</span>
+                                </a>
+                            </li>
+                            <li class="twPc-ArrangeSizeFit">
+                                <a href="https://twitter.com/mertskaplan/followers" title="1.810 Followers">
+                                    <span class="twPc-StatLabel twPc-block">Followers</span>
+                                    <span class="twPc-StatValue">1.810</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
+            <!-- code end -->
 
-        <div class="row panel">
-            <div class="col-md-4  col-xs-12">
-                <ul>
-                    <p class="navbar-text">
-                        <span class="linktext">Social link : </span>
-                        <a target="_blank" href="https://se.linkedin.com/in/erikiggmark"><i
-                                    class="fa fa-linkedin"></i></a>
-                        <a target="_blank" href="https://twitter.com/{!! $user->profile->twitter_username !!}"><i class="fa fa-twitter"></i></a>
-                        <a target="_blank" href="https://www.pinterest.com/{!! $user->profile->github_username !!}"><i class="fa fa-facebook"></i></a>
-                    </p>
-
-                </ul>
+            <div class="panel col-md-6 col-md-offset-1">
+                <div class="panel">
+                    <div class="panel-body">
+                        <h4>Users Description:</h4>
+                        <span>
+                            @if($user->profile->bio)
+                                {{ $user->profile->bio }}
+                            @endif
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 

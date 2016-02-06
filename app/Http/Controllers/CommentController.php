@@ -29,6 +29,15 @@ class CommentController extends Controller
         $book_id    = \Input::get('book_id');
         $score_tag  = \Input::get('score_tag');
 
+        if($score_tag=='P+'){$score_tag =   10;}
+        elseif($score_tag=='P'){$score_tag =   8;}
+        elseif($score_tag=='NEU'){$score_tag =   6;}
+        elseif($score_tag=='N+'){$score_tag =   4;}
+        elseif($score_tag=='N'){$score_tag =   2;}
+        else{$score_tag =   0;}
+
+
+
         $comment = new \App\Comment();
         $comment->user_id = \Auth::user()->id;
         $comment->book_id = $book_id;
