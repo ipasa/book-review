@@ -54,6 +54,9 @@
 
                 </div>
             </div>
+            <span class="pull-right">
+                {!! $aCategoryDetails->render() !!}
+            </span>
 
         </div>
     </section>

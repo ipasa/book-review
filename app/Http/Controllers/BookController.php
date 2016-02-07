@@ -11,19 +11,42 @@ class BookController extends Controller{
     protected function singleBook($id){
         $singleBook =   Book::findOrFail($id);
 
+        $indivisualbookSuggestion = \DB::select(\DB::raw("
+                                    SELECT itemID2, (sum/count) as average
+                                    FROM dev
+                                    WHERE count>2 AND itemID1=$id
+                                    ORDER BY (sum/count) DESC LIMIT 10")
+        );
+        if($indivisualbookSuggestion){
+            foreach($indivisualbookSuggestion as $singleSuggestion){
+                $bookNameOrDetails  =   Book::findOrFail($singleSuggestion->itemID2);
+                $items[]    =   array(
+                    'book_id'   =>  $bookNameOrDetails->id,
+                    'book_name' =>  $bookNameOrDetails->title,
+                    'book_image'=>  $bookNameOrDetails->cover_image,
+                );
+            }
+        }else{
+            $items[]    =   array();
+        }
+
+        //dd($indivisualbookSuggestion);
+
         if(\Auth::check()){
             $favorites_list =   \DB::table('favorites')->whereUserId(\Auth::user()->id)->lists('book_id');
             Cookie::queue(Cookie::make('name', $singleBook->title, 'minutes'));
             return view('pages.singlebook', compact('favorites', 'favorites_list'))
-                ->with('bookdetails', $singleBook);
+                ->with('bookdetails', $singleBook)
+                ->with('suggestedBooks',$items);
         }
         Cookie::queue(Cookie::make('name', $singleBook->title, 'minutes'));
-        return view('pages.singlebook')->with('bookdetails', $singleBook);
+        return view('pages.singlebook')->with('bookdetails', $singleBook)
+                ->with('suggestedBooks',$items);
     }
 
     public function categoryShow($id){
         $categoryName       =   Category::find($id);
-        $aCategoryDetails   =   Book::where('category_id', $id)->get();
+        $aCategoryDetails   =   Book::where('category_id', $id)->paginate(16);
         return view('pages.categoryShow')->with('aCategoryDetails', $aCategoryDetails)
                                          ->with('categoryName', $categoryName);
     }

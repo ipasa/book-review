@@ -214,68 +214,36 @@
                 <div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">
                     <h2 class="section_title">RELATED PRODUCTS</h2>
 
-                    <!-- RELATED PRODUCTS slider -->
-                    <ul class="products">
+                    <?php $errors = array_filter($suggestedBooks); ?>
 
-                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
-                            <div class="grid">
-                                <figure class="effect-sadie">
-                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                                    <figcaption>
-                                        <h2>Holy <span>Sadie</span></h2>
-                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                        <a href="#">View more</a>
-                                        <!-- RATING SECTION -->
-                                        <div class="row model-review">
-                                            <div class="col-md-12 col-xs-12 col-sm-4">
-                                                <p class="stars">
-                                            <span>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <!-- RATING SECTION -->
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
-
-                            <div class="grid">
-                                <figure class="effect-sadie">
-                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                                    <figcaption>
-                                        <h2>Holy <span>Sadie</span></h2>
-                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                        <a href="#">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </li>
-
-                        <li class="col-xs-12 col-sm-6 col-md-6 first last">
-                            <div class="grid">
-                                <figure class="effect-sadie">
-                                    <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                                    <figcaption>
-                                        <h2>Holy <span>Sadie</span></h2>
-                                        <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                        <a href="#">View more</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- RELATED PRODUCTS slider -->
+                    @if(empty($errors))
+                        <div class="panel">
+                            <p>Sorry, We dont suggested book for this indivisual book</p>
+                        </div>
+                    @else
+                        <!-- RELATED PRODUCTS slider -->
+                        <ul class="products">
+                            @foreach($suggestedBooks as $suggestedBook)
+                                <li class="col-xs-12 col-sm-6 col-md-6 first last">
+                                    <div class="grid">
+                                        <figure class="effect-sadie">
+                                            <img src="{{ $suggestedBook['book_image'] }}"
+                                                 class="" alt="book5-300" height="300px">
+                                            <figcaption>
+                                                <p>{{ $suggestedBook['book_name'] }}</p>
+                                                <a href="#">View more</a>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <!-- RELATED PRODUCTS slider -->
+                    @endif
                 </div>
             </aside>
             <!-- END OF SEARCH SECTION FOR SIDEBAR -->
+
 
         </div>
     </div>
