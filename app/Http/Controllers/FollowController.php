@@ -44,11 +44,18 @@ class FollowController extends Controller
             //Calculation of lift
             $liftAofB   =   $favoritesAintersetB/sqrt($favoritesB*$favoritesA);
 
+            if($user->isFollowedBy($user->id)){
+                $status     =   'Followed';
+            }
+            else
+                $status     =   'Not Followed';
+
             if($liftAofB>0.5){
                 $items[] = array(
                     'user_id'       =>  $i,
                     'user_name'     =>  $user_name,
-                    'co-efficient'  =>  $liftAofB
+                    'co-efficient'  =>  $liftAofB,
+                    'status'        =>  $status
                 );
 
             }

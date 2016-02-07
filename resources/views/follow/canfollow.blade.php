@@ -23,9 +23,14 @@
 
         <div class="list-group col-md-6 col-md-offset-3" style="margin-top: -40px">
             @foreach($items as $item)
+                @if($followed = $item['status']=='Followed')
+                @endif
+
                 @unless($item['user_id']==Auth::id())
                     <a href="http://localhost:8000/user/{{$item['user_id']}}"
-                       class="list-group-item">{{ $item['user_name'] }} - {{ $item['co-efficient'] }}
+                       class="list-group-item canFollowSingle">
+                        <i class="fa fa-check-square {{ $followed ? 'green':'red' }}"></i>
+                        {{ $item['user_name'] }}
                     </a>
 
                 @endunless

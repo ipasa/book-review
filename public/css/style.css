@@ -9060,3 +9060,20 @@ ul.twPc-Arrange {
 .mar-less{
     margin: -2px;
 }
+
+.canFollowSingle{
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 0;
+}
+.green{
+    color: #00ab6b;
+    font-size: 18px;
+}
+
+.red{
+    color: #AB2346;
+    font-size: 18px;
+}
