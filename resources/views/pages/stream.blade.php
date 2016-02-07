@@ -25,16 +25,16 @@
                               <i class="fa fa-check-circle-o material-icons"></i>
                             </span>
 
-                            <span class="Lesson-List__title utility-flex">
+                            <span class="Lesson-List__title utility-flex streamSigle">
                               <a class="green" href="/series/laravel-5-and-the-front-end">
                                   {{ $item['col1'] }}
                               </a>
                                 @if($item['col3'] == 'c')
-                                    Comment
+                                    <span class="canFollowSingle">Comment</span>
                                 @elseif($item['col3'] == 'follow')
-                                    Follow
+                                    <span class="canFollowSingle">Follow</span>
                                 @else
-                                    Favorites
+                                    <span class="canFollowSingle">Favorites</span>
                                 @endif
                                 <a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">
                                     {{ $item['col2'] }}

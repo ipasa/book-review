@@ -93,3 +93,6 @@ Route::get('search',[
 //Suggesting Related Books
 Route::get('suggestion', ['as'=>'book-suggestion', 'uses'=>'BookSuggestion@userSuggestion']);
 
+Route::get('predict', 'BookController@predict');
+
+

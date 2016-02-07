@@ -28,4 +28,109 @@ class BookController extends Controller{
                                          ->with('categoryName', $categoryName);
     }
 
+    public function predict() {
+
+        $userID=\Auth::id();
+
+        $books   = Book::all();
+
+        foreach($books as $book){
+            $itemID =   $book->id;
+
+            $denom = 0.0; //denominator
+            $numer = 0.0; //numerator
+            $k = $itemID;
+            $sqls = \DB::select(\DB::raw("
+                                    SELECT r.book_id, r.score_tag
+                                    FROM comments r
+                                    WHERE r.user_id=$userID AND r.book_id <> $itemID")
+            );
+
+            //for all items the user has rated
+            foreach($sqls as $row)  {
+                $j = $row->book_id;
+                $ratingValue = $row->score_tag;
+
+                //get the number of times k and j have both been rated by the same user
+                $sql2 = \DB::select(\DB::raw("
+                                    SELECT d.count, d.sum FROM dev d WHERE itemID1=$k AND itemID2=$j")
+                );
+
+                //dd($sqls);
+
+                //skip the calculation if it isn't found
+                if($sql2 > 0)  {
+
+                    //$numrows = mysqli_fetch_assoc($count_result);
+                    foreach($sql2 as $sql2){
+                        $count  = $sql2->count;
+                        $sum  = $sql2->sum;
+
+                        // $count = mysqli_result($count_result, 0, "count");
+                        // $sum = mysqli_result($count_result, 0, "sum");
+                        //calculate the average
+                        $average = $sum / $count;
+                        //increment denominator by count
+                        $denom += $count;
+                        //increment the numerator
+                        $numer += $count * ($average + $ratingValue);
+                    }
+                }
+            }
+            if ($denom == 0)
+                //return 0;
+                $myRating   =   0;
+            else{
+                //return ($numer / $denom);
+                $myRating   =   $numer / $denom;
+            }
+                $bookItem[]   =   array(
+                    'book_id'   =>  $itemID,
+                    'book_name' =>  $book->title,
+                    'rating'    =>  $myRating
+                );
+        }
+
+        function array_sort($array, $on, $order=SORT_ASC)
+        {
+            $new_array = array();
+            $sortable_array = array();
+
+            if (count($array) > 0) {
+                foreach ($array as $k => $v) {
+                    if (is_array($v)) {
+                        foreach ($v as $k2 => $v2) {
+                            if ($k2 == $on) {
+                                $sortable_array[$k] = $v2;
+                            }
+                        }
+                    } else {
+                        $sortable_array[$k] = $v;
+                    }
+                }
+
+                switch ($order) {
+                    case SORT_ASC:
+                        asort($sortable_array);
+                        break;
+                    case SORT_DESC:
+                        arsort($sortable_array);
+                        break;
+                }
+
+                foreach ($sortable_array as $k => $v) {
+                    $new_array[$k] = $array[$k];
+                }
+            }
+
+            return $new_array;
+        }
+
+        $items = array_sort($bookItem, 'rating', SORT_DESC);
+        $items = array_slice($items, 0, 10);
+        //dd($items);
+
+        return view('pages.test')->with('items', $items);;
+    }
+
 }

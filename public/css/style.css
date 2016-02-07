@@ -9065,7 +9065,7 @@ ul.twPc-Arrange {
     font-family: "Merriweather", serif;
     font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 0;
 }
 .green{
@@ -9076,4 +9076,9 @@ ul.twPc-Arrange {
 .red{
     color: #AB2346;
     font-size: 18px;
+}
+.streamSigle{
+    font-family: "Raleway", arial, sans-serif;
+    letter-spacing: 1px;
+    line-height: 1.58;
 }
