@@ -16,7 +16,7 @@
         </header>
 
         <section class="row">
-            <div class="Grid__column col-md-8 col-md-offset-2 centered">
+            <div class="Grid__column col-md-8 centered">
                 <ul class="Lesson-List ">
 
                     @foreach($items as $item)
@@ -44,6 +44,44 @@
                     @endforeach
                 </ul>
             </div>
+
+            <div class="Grid__column col-md-4 left">
+                <ul class="Lesson-List" id="users">
+                    <li v-repeat="user:users" class="Lesson-List__item">
+                        <span class="Lesson-List__status">
+                              <i class="fa fa-heart-o"></i>
+                        </span>
+
+                        <span class="Lesson-List__title utility-flex realTimestream">
+                            @{{ user.name }} favorited @{{ user.bookname }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </section>
     </div>
+    <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.9/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#users',
+            data:{
+                users:[]
+            },
+            ready:function(){
+                var pusher = new Pusher('eac2641ea059cc85dd7d', {
+                    encrypted: true
+                });
+
+                pusher.subscribe('test')
+                        .bind('App\\Events\\UserHasfavorited', this.addUser);
+            },
+            methods:{
+                addUser:function(user){
+                    this.users.push(user);
+                }
+            }
+
+        })
+    </script>
 @endsection

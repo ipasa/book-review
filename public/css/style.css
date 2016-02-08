@@ -9082,3 +9082,17 @@ ul.twPc-Arrange {
     letter-spacing: 1px;
     line-height: 1.58;
 }
+.realTimestream{
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    color: #A63D40;
+}
+.fa-check-circle-o{
+    color: #88C05A;
+}
+.fa-heart-o{
+    color: #A63D40;
+}

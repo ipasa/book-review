@@ -11,9 +11,7 @@
             <a class="navbar-brand text-danger" href="#">BRAND</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
-            <ul class="nav navbar-nav navbar-left">
-
-            </ul>
+            {{--<ul class="nav navbar-nav navbar-left"></ul>--}}
             <ul class="nav navbar-nav navbar-right">
                 <li>{!! link_to_route('stream-show', 'Stream') !!}</li>
                 <li>{!! link_to('/alluser', 'All User List') !!}</li>
