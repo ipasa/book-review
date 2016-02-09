@@ -21,25 +21,77 @@
 
                     @foreach($items as $item)
                         <li class="Lesson-List__item">
-                            <span class="Lesson-List__status">
-                              <i class="fa fa-check-circle-o material-icons"></i>
-                            </span>
+                            {{--<span class="Lesson-List__status">--}}
+                              {{--<i class="fa fa-check-circle-o material-icons"></i>--}}
+                            {{--</span>--}}
 
-                            <span class="Lesson-List__title utility-flex streamSigle">
-                              <a class="green" href="/series/laravel-5-and-the-front-end">
-                                  {{ $item['col1'] }}
-                              </a>
-                                @if($item['col3'] == 'c')
+                            {{--<span class="Lesson-List__title utility-flex streamSigle">--}}
+                              {{--<a class="green" href="/series/laravel-5-and-the-front-end">--}}
+                                  {{--{{ $item['col1'] }}--}}
+                              {{--</a>--}}
+                                {{--@if($item['col3'] == 'c')--}}
+                                    {{--<span class="canFollowSingle">Comment</span>--}}
+                                {{--@elseif($item['col3'] == 'follow')--}}
+                                    {{--<span class="canFollowSingle">Follow</span>--}}
+                                {{--@else--}}
+                                    {{--<span class="canFollowSingle">Favorites</span>--}}
+                                {{--@endif--}}
+                                {{--<a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">--}}
+                                    {{--{{ $item['col2'] }}--}}
+                                {{--</a>--}}
+                            {{--</span>--}}
+
+                            @if($item['col3'] == 'c')
+                                <span class="Lesson-List__status">
+                                    <i class="fa fa-check-circle-o material-icons"></i>
+                                </span>
+
+                                <span class="Lesson-List__title utility-flex streamSigle">
+                                    {{--<a class="green" href="/series/laravel-5-and-the-front-end">--}}
+                                      {{--{{ $item['col1'] }}--}}
+                                    {{--</a>--}}
+                                    {!! link_to('/user/'.$item['col5'], $item['col1'], array('class'=>"green")) !!}
                                     <span class="canFollowSingle">Comment</span>
-                                @elseif($item['col3'] == 'follow')
-                                    <span class="canFollowSingle">Follow</span>
-                                @else
+
+                                    {{--<a class="green" href="{{link_to('/book/'.$item['col6'])}}">--}}
+                                        {{--{{ $item['col2'] }}--}}
+                                    {{--</a>--}}
+                                    {!! link_to('/book/'.$item['col6'], $item['col2'], array('class'=>"green")) !!}
+                                </span>
+                            @elseif($item['col3'] == 'follow')
+                                <span class="Lesson-List__status">
+                                  <i class="fa fa-check-circle-o material-icons"></i>
+                                </span>
+
+                                <span class="Lesson-List__title utility-flex streamSigle">
+                                  {{--<a class="green" href="/series/laravel-5-and-the-front-end">--}}
+                                      {{--{{ $item['col1'] }}--}}
+                                  {{--</a>--}}
+                                  {!! link_to('/user/'.$item['col5'], $item['col1'], array('class'=>"green")) !!}
+                                <span class="canFollowSingle">Follow</span>
+                                {{--<a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">--}}
+                                    {{--{{ $item['col2'] }}--}}
+                                {{--</a>--}}
+                                {!! link_to('/user/'.$item['col6'], $item['col2'], array('class'=>"green")) !!}
+                                </span>
+                            @else
+                                <span class="Lesson-List__status">
+                                  <i class="fa fa-check-circle-o material-icons"></i>
+                                </span>
+
+                                <span class="Lesson-List__title utility-flex streamSigle">
+                                    {{--<a class="green" href="/series/laravel-5-and-the-front-end">--}}
+                                      {{--{{ $item['col1'] }}--}}
+                                    {{--</a>--}}
+                                    {!! link_to('/user/'.$item['col5'], $item['col1'], array('class'=>"green")) !!}
                                     <span class="canFollowSingle">Favorites</span>
-                                @endif
-                                <a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">
-                                    {{ $item['col2'] }}
-                                </a>
-                            </span>
+
+                                    {{--<a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">--}}
+                                        {{--{{ $item['col2'] }}--}}
+                                    {{--</a>--}}
+                                    {!! link_to('/book/'.$item['col6'], $item['col2'], array('class'=>"green")) !!}
+                                </span>
+                            @endif
                         </li>
                     @endforeach
                 </ul>

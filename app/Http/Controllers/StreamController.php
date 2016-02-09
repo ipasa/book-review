@@ -27,7 +27,7 @@ class StreamController extends Controller
              */
 
             $results = \DB::select(\DB::raw("
-                            SELECT users.name as name, books.title as title, type, favorites.created_at as created_at
+                            SELECT users.name as name, users.id as user_id, books.title as title, books.id as book_id, type, favorites.created_at as created_at
                             FROM users,books,favorites
                             WHERE favorites.user_id=users.id
                             AND favorites.book_id=books.id
@@ -39,7 +39,9 @@ class StreamController extends Controller
                     'col1' => $result[0]->name,
                     'col2' => $result[0]->title,
                     'col3' => $result[0]->type,
-                    'col4' => $result[0]->created_at
+                    'col4' => $result[0]->created_at,
+                    'col5' => $result[0]->user_id,
+                    'col6' => $result[0]->book_id
                 );
             }
 
@@ -49,7 +51,7 @@ class StreamController extends Controller
              * inserting Comments
              */
             $results = \DB::select(\DB::raw("
-                                    SELECT users.name as name, books.title as title, type, comments.created_at as created_at
+                                    SELECT users.name as name, users.id as user_id, books.title as title, books.id as book_id, type, comments.created_at as created_at
                                     FROM users,books,comments
                                     WHERE comments.user_id=users.id
                                     AND comments.book_id=books.id
@@ -61,7 +63,9 @@ class StreamController extends Controller
                     'col1' => $result[0]->name,
                     'col2' => $result[0]->title,
                     'col3' => $result[0]->type,
-                    'col4' => $result[0]->created_at
+                    'col4' => $result[0]->created_at,
+                    'col5' => $result[0]->user_id,
+                    'col6' => $result[0]->book_id
                 );
             }
 
@@ -86,14 +90,15 @@ class StreamController extends Controller
                     'col1' => $follower_name->name,
                     'col2' => $followed_name->name,
                     'col3' => $result[0]->type,
-                    'col4' => $result[0]->created_at
+                    'col4' => $result[0]->created_at,
+                    'col5' => $result[0]->follower_id,
+                    'col6' => $result[0]->followed_id
                 );
             }
 
             krsort($dataArray);
             $dataArray = array_slice($dataArray, 0, 15);
             //dd($dataArray);
-
             return view('pages.stream')->with('items', $dataArray);
         } else
             \Session::flash('message', "You Are not to authorized to See this page page, Please Login first");

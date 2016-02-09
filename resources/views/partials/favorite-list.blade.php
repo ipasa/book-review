@@ -1,4 +1,4 @@
-<div class="full-color mar-top-50">
+<div class="container-fluid full-color mar-top-50">
 
     <header class="Header-favorite">
         <div class="Banner">
