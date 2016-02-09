@@ -13,12 +13,14 @@
         <div class="navbar-collapse collapse" id="navbar-collapsible">
             {{--<ul class="nav navbar-nav navbar-left"></ul>--}}
             <ul class="nav navbar-nav navbar-right">
-                <li>{!! link_to_route('stream-show', 'Stream') !!}</li>
-                <li>{!! link_to('/alluser', 'All User List') !!}</li>
+                <li>{!! link_to_route('search', 'Search') !!}</li>
+                <li>{!! link_to('/alluser', 'Browser User') !!}</li>
+
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
                 @else
+                    <li>{!! link_to_route('stream-show', 'Stream') !!}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span></a>

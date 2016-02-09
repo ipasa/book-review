@@ -63,8 +63,9 @@
             </div>
             <!-- .loop-meta -->
             <nav class="tokokoo-breadcrumb breadcrumb-trail breadcrumbs col-md-offset-1" itemprop="breadcrumb">
-                <a class="home" href="#">Home</a> / <a href="#">Programming</a> /
-                <span class="trail-end">Professional Ajax, 2nd Edition</span>
+                {!! link_to('/', 'Home') !!} /
+                {!! link_to('/category/'.$bookdetails->category_id, $bookdetails->category->name) !!} /
+                <span class="trail-end">{{ $bookdetails->title }}</span>
             </nav>
         </div>
     </div>
@@ -112,7 +113,9 @@
 
                 <!-- BOOK DETAIL'S DESCRIPTION -->
                 <div class="col-md-7">
-                    <h1 itemprop="name" class="product_title entry-title">{{ $bookdetails->title }}</h1>
+                    <h1 itemprop="name" class="product_title entry-title shadow-title">
+                        <strong>{{ $bookdetails->title }}</strong>
+                    </h1>
                     <p class="author">By -
                         @foreach($bookdetails->authors as $author)
                             <a href="#">{{ $author->author_name}}</a><span>,</span>
@@ -125,16 +128,17 @@
                         </div>
 
                         <!-- CARAGORIES SECTION -->
-                        <div class="col-md-12 col-xs-12 col-sm-4">
+                        <div class="col-md-12 col-xs-12 col-sm-4 shadow">
                             <span class="cats">
                                 <h2 class="tags">Catagories : </h2>
-                                <a class="single-tags" href="#">{{ $bookdetails->category->name }}</a>
+                                {{--<a class="single-tags" href="#">{{ $bookdetails->category->name }}</a>--}}
+                                {!! link_to('/category/'.$bookdetails->category_id, $bookdetails->category->name, array('class'=>'single-tags')) !!}
                             </span>
                         </div>
                         <!-- CARAGORIES SECTION -->
 
                         <!-- TAGS SECTION -->
-                        <div class="col-md-12 col-xs-12 col-sm-4">
+                        <div class="col-md-12 col-xs-12 col-sm-4 shadow">
                             <span class="cats">
                                 <h2 class="tags">Tags : </h2>
                                 @foreach($bookdetails->tags as $tag)
@@ -149,15 +153,52 @@
                         <!-- RATING SECTION -->
                         <div class="col-md-12 col-xs-12 col-sm-4 rating_row">
                             <h2 class="rating">Rating : </h2>
-                            <p class="stars">
+                            <?php $totalRating = 0; ?>
+                            @foreach($bookdetails->comments as $comments)
+                                <?php $totalRating = $comments->score_tag+$totalRating; ?>
+                            @endforeach
+                            {{--<p class="stars">--}}
+                                    {{--<span>--}}
+                                        {{--<i class="fa fa-star"></i>--}}
+                                        {{--<i class="fa fa-star"></i>--}}
+                                        {{--<i class="fa fa-star"></i>--}}
+                                        {{--<i class="fa fa-star-o"></i>--}}
+                                        {{--<i class="fa fa-star-o"></i>--}}
+                                    {{--</span>--}}
+                            {{--</p>--}}
+                            @if($bookdetails->comments->count()>0)
+                                <?php
+                                    $bookRating =   $totalRating/$bookdetails->comments->count();
+                                    $i = round($bookRating);
+                                ?>
+
+                                <!-- USER SINGLE RATING -->
+                                <span>
+                                    <p class="stars">
+                                        <div class="grating">Rating -</div>
+                                        <span>
+                                            @for($j=1;$j<=$i;$j++)
+                                                <i class="fa fa-star"></i>
+                                            @endfor
+                                            @for($j=1;$j<=5-$i;$j++)
+                                                <i class="fa fa-star-o"></i>
+                                            @endfor
+                                        </span>
+                                    </p>
+                                </span>
+                                <!-- END OF USER SINGLE RATING -->
+                            @else
+                                <p class="stars">
+                                    <div class="grating">Rating -</div>
                                     <span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </span>
-                            </p>
+                                </p>
+                            @endif
                         </div>
                         <!-- RATING SECTION -->
 
@@ -176,7 +217,7 @@
                             </div>
                             <div id="respond" class="comment-respond">
                                 <h3 id="reply-title" class="comment-reply-title">
-                                    Be the first to review “Professional JavaScript for Web Developers”
+                                    <i>Want's to give a review to “{{ $bookdetails->title }}”</i>
                                 </h3>
 
                                 {{--Comment Submit form--}}
@@ -213,12 +254,12 @@
             <!-- SEARCH SECTION FOR SIDEBAR -->
             <aside class="col-md-3">
                 <div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">
-                    <h2 class="section_title">RELATED PRODUCTS</h2>
+                    <h2 class="section_title">SUGGESTED BOOKS</h2>
 
                     <?php $errors = array_filter($suggestedBooks); ?>
 
                     @if(empty($errors))
-                        <div class="panel">
+                        <div class="alert alert-warning">
                             <p>Sorry, We dont suggested book for this indivisual book</p>
                         </div>
                     @else
@@ -251,176 +292,176 @@
 </div>
 <!-- END OF CONTENT SECTION -->
 
-<!-- RELATED PRODUCTS -->
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">
-            <h2 class="section_title">RELATED PRODUCTS</h2>
+{{--<!-- RELATED PRODUCTS -->--}}
+{{--<div class="container">--}}
+    {{--<div class="row">--}}
+        {{--<div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">--}}
+            {{--<h2 class="section_title">RELATED PRODUCTS</h2>--}}
 
-            <!-- RELATED PRODUCTS slider -->
-            <ul class="products">
+            {{--<!-- RELATED PRODUCTS slider -->--}}
+            {{--<ul class="products">--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-4 first last">
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                                <!-- RATING SECTION -->
-                                <div class="row model-review">
-                                    <div class="col-md-12 col-xs-12 col-sm-4">
-                                        <p class="stars">
-                                            <span>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- RATING SECTION -->
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                {{--<li class="col-xs-12 col-sm-6 col-md-4 first last">--}}
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                                {{--<!-- RATING SECTION -->--}}
+                                {{--<div class="row model-review">--}}
+                                    {{--<div class="col-md-12 col-xs-12 col-sm-4">--}}
+                                        {{--<p class="stars">--}}
+                                            {{--<span>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star-o"></i>--}}
+                                                {{--<i class="fa fa-star-o"></i>--}}
+                                            {{--</span>--}}
+                                        {{--</p>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!-- RATING SECTION -->--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-4 first last">
+                {{--<li class="col-xs-12 col-sm-6 col-md-4 first last">--}}
 
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-4 first last">
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
-            </ul>
-            <!-- RELATED PRODUCTS slider -->
+                {{--<li class="col-xs-12 col-sm-6 col-md-4 first last">--}}
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+            {{--<!-- RELATED PRODUCTS slider -->--}}
 
-        </div>
-    </div>
-</div>
-<!-- END OF RELATED PRODUCTS -->
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
+{{--<!-- END OF RELATED PRODUCTS -->--}}
 
 
-<!-- YOU MAY ALSO LIKE -->
-<div class="container">
-    <div class="row">
-        <h2 class="also_like section_title">YOU MAY ALSO LIKE</h2>
-        <div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">
-            <!-- RELATED PRODUCTS slider -->
-            <ul class="products">
+{{--<!-- YOU MAY ALSO LIKE -->--}}
+{{--<div class="container">--}}
+    {{--<div class="row">--}}
+        {{--<h2 class="also_like section_title">YOU MAY ALSO LIKE</h2>--}}
+        {{--<div class="col-xs-12 col-md-12 col-sm-12 best_selling_section shadow">--}}
+            {{--<!-- RELATED PRODUCTS slider -->--}}
+            {{--<ul class="products">--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-3 first last">
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                                <!-- RATING SECTION -->
-                                <div class="row model-review">
-                                    <div class="col-md-12 col-xs-12 col-sm-4">
-                                        <p class="stars">
-                                                    <span>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- RATING SECTION -->
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                {{--<li class="col-xs-12 col-sm-6 col-md-3 first last">--}}
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                                {{--<!-- RATING SECTION -->--}}
+                                {{--<div class="row model-review">--}}
+                                    {{--<div class="col-md-12 col-xs-12 col-sm-4">--}}
+                                        {{--<p class="stars">--}}
+                                                    {{--<span>--}}
+                                                        {{--<i class="fa fa-star"></i>--}}
+                                                        {{--<i class="fa fa-star"></i>--}}
+                                                        {{--<i class="fa fa-star"></i>--}}
+                                                        {{--<i class="fa fa-star-o"></i>--}}
+                                                        {{--<i class="fa fa-star-o"></i>--}}
+                                                    {{--</span>--}}
+                                        {{--</p>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<!-- RATING SECTION -->--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-3 first last">
+                {{--<li class="col-xs-12 col-sm-6 col-md-3 first last">--}}
 
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-3 first last">
+                {{--<li class="col-xs-12 col-sm-6 col-md-3 first last">--}}
 
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-3 first last">
+                {{--<li class="col-xs-12 col-sm-6 col-md-3 first last">--}}
 
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-                <li class="col-xs-12 col-sm-6 col-md-3 first last">
+                {{--<li class="col-xs-12 col-sm-6 col-md-3 first last">--}}
 
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                    {{--<div class="grid">--}}
+                        {{--<figure class="effect-sadie">--}}
+                            {{--<img src="{{ URL::asset('images/books/book8-300.jpg') }}" class="" alt="book5-300">--}}
+                            {{--<figcaption>--}}
+                                {{--<h2>Holy <span>Sadie</span></h2>--}}
+                                {{--<p>Sadie never took her eyes off me. <br>She had a dark soul.</p>--}}
+                                {{--<a href="#">View more</a>--}}
+                            {{--</figcaption>--}}
+                        {{--</figure>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
 
-            </ul>
-            <!-- RELATED PRODUCTS slider -->
-        </div>
-    </div>
-</div>
-<!-- END OF YOU MAY ALSO LIKE -->
+            {{--</ul>--}}
+            {{--<!-- RELATED PRODUCTS slider -->--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
+{{--<!-- END OF YOU MAY ALSO LIKE -->--}}
 
 <section class="footer-bottom">
     2014 &copy; Jonathan White. All rights reserved.

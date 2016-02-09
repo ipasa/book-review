@@ -40,16 +40,16 @@
                 <div class="row">
                     <div class="left-sidebar col-md-2">
                         <div class="left-single-sidebar single-sidebar nav">
-                            <ul>
-                                <li class="active"><a href="#">All</a></li>
-                                <li><a href="#">people</a></li>
-                                <li><a href="#">Publications</a></li>
+                            <ul v-repeat="user:users">
+                                <li class="active">
+                                    <a href="http://localhost:8000/category/@{{ user.category_id }}">@{{ user.category_id }}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="result-container">
-                            <h2 class="heading-title">Stories</h2>
+                            <h2 class="heading-title">Book</h2>
                             <article v-repeat="user:users">
                                 <div class="single-result">
                                     {{--<div class="header">--}}
@@ -65,7 +65,12 @@
                                     {{--</div>--}}
                                     <div class="result-content">
                                         <a href="http://localhost:8000/book/@{{ user.id }}"><h1>@{{ user.title }}</h1></a>
-                                        <p>@{{ user.description }}</p>
+                                        <p>
+                                            <img src="@{{ user.cover_image }}" alt="@{{ user.title }}"
+                                                 class="img-thumbnail img-responsive right" width="200px" style="margin-left: 5px;">
+                                            @{{ user.description }}
+                                        </p>
+
                                         {{--<a href="#" class="read-more">Read more…</a>--}}
                                     </div>
                                     {{--<div class="footer">--}}
