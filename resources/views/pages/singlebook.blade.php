@@ -53,6 +53,7 @@
 </head>
 
 <body>
+@include('partials/navigation')
 <!-- HERO SECTION -->
 <div class="hero page_title">
     <div class="container">
