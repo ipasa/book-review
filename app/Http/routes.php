@@ -103,9 +103,9 @@ Route::get('suggestion', ['as'=>'book-suggestion', 'uses'=>'BookSuggestion@userS
 Route::get('predict', 'BookController@predict');
 
 //Pusher Test
-//Route::get('/push', function () {
-//    return view('testBroadcast');
-//});
+Route::get('/push', function () {
+    return view('testBroadcast');
+});
 //
 //Route::get('broadcast', function () {
 //    $user   =   Request::input('name');
