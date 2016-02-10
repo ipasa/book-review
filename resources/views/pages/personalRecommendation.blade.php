@@ -2,15 +2,15 @@
 
 @section('content')
 
-    <div class="full-color mar-top-50">
+    <div class="container-fluid full-color mar-top-50">
 
         <header class="Header-favorite">
             <div class="Banner">
                 <h1 class="Banner__heading utility-center">
-                    Stream
-            <span class="utility-text-little utility-muted">
-              Live Stream to our entire web application
-            </span>
+                    Suggestion
+                    <span class="utility-text-little utility-muted">
+                      Book Recomendation
+                    </span>
                 </h1>
             </div>
         </header>

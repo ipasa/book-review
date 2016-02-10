@@ -463,11 +463,18 @@
 {{--</div>--}}
 {{--<!-- END OF YOU MAY ALSO LIKE -->--}}
 
+<!-- FOOTER SECTION -->
 <section class="footer-bottom">
-    2014 &copy; Jonathan White. All rights reserved.
+    &copy; Hasan Hafiz Pasha &amp; Mahadi Hasan Raju. All rights reserved.
 </section>
+<!-- END OF FOOTER SECTION -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ URL::asset('js/bootstrap.js') }}"></script>
 <script>
     $(document).ready(function () {
 
@@ -502,17 +509,17 @@
         });
     });
 </script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.showmore_one').showMore({
-        speedDown: 300,
-        speedUp: 300,
-        height: '10px',
-        showText: 'Show more <i class="fa fa-chevron-down"></i>',
-        hideText: 'Show less <i class="fa fa-chevron-up"></i>'
-    });
-  });
-</script>
+{{--<script type="text/javascript">--}}
+  {{--$(document).ready(function(){--}}
+    {{--$('.showmore_one').showMore({--}}
+        {{--speedDown: 300,--}}
+        {{--speedUp: 300,--}}
+        {{--height: '10px',--}}
+        {{--showText: 'Show more <i class="fa fa-chevron-down"></i>',--}}
+        {{--hideText: 'Show less <i class="fa fa-chevron-up"></i>'--}}
+    {{--});--}}
+  {{--});--}}
+{{--</script>--}}
 
 </body>
 </html>

@@ -8422,14 +8422,15 @@ a.single-tags:hover {
 }
 
 .navbar-trans li > a:focus, .navbar-trans li.active {
-    background-color: #f44d3c;
+    background-color: #99C93D;
     color: #333;
 }
 
 .navbar-trans li > a:hover {
-    background-color: #f44d3c;
-    color: #fff;
-    opacity: 0.5;
+    /*background-color: #f44d3c;*/
+    background-color: #99C93D;
+    color: #EDFBFF;
+    /*opacity: 0.5;*/
 }
 
 .navbar-trans a {

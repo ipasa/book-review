@@ -29,7 +29,7 @@
                             <li>{!! link_to('/user/'.Auth::user()->id.'/favorites', 'Your Favorites') !!}</li>
                             <hr>
                             <li>{!! link_to('/canfollow', 'Can Follow') !!}</li>
-                            <li>{!! link_to('/suggestion', 'Suggested Book') !!}</li>
+                            <li>{!! link_to('/predict', 'Suggested Book') !!}</li>
                             <hr>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>

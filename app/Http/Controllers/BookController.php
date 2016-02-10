@@ -153,7 +153,7 @@ class BookController extends Controller{
         $items = array_slice($items, 0, 10);
         //dd($items);
 
-        return view('pages.test')->with('items', $items);;
+        return view('pages.personalRecommendation')->with('items', $items);;
     }
 
 }
