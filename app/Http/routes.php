@@ -113,3 +113,4 @@ Route::get('/push', function () {
 //    event(new UserHasfavorited($user));
 //});
 
+Route::get('category-display', 'BookCategory@index');

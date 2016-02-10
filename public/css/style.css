@@ -7609,6 +7609,7 @@ header .social a.instagram {
     text-align: center;
     padding: 50px 0;
     color: #bbbbbb;
+    box-shadow: 0 0px 2px rgba(0,0,0,.4);
 }
 
 .instagram-content .photo-box {
@@ -7639,7 +7640,7 @@ header .social a.instagram {
 
 .instagram-content .photo-box .image-wrap .book-cata {
     position: absolute;
-    top: 50px;
+    top: 100px;
     left: 15px;
     padding: 5px;
     background: #000;
@@ -9015,6 +9016,8 @@ span.linktext {
     margin: 5px 0 0;
 }
 .twPc-divName {
+    font-family: "Raleway", arial, sans-serif;
+    text-transform: capitalize;
     font-size: 18px;
     font-weight: 700;
     line-height: 21px;
@@ -9049,12 +9052,13 @@ ul.twPc-Arrange {
 }
 .twPc-StatValue {
     display: block;
+    text-align: center;
     font-size: 18px;
     font-weight: 500;
     transition: color 0.15s ease-in-out 0s;
 }
 .twPc-StatLabel {
-    color: #8899a6;
+    color: #2A324B;
     font-size: 10px;
     letter-spacing: 0.02em;
     overflow: hidden;
@@ -9113,4 +9117,16 @@ div#respond {
 }
 .shadow{
     box-shadow: 0 0px 2px rgba(0,0,0,.4);
+}
+
+.userInfocolor{
+    color: #88C05A;
+}
+.userInfoDesc {
+    font-family: "Raleway", arial, sans-serif;
+    color: #2A324B;
+    letter-spacing: 0.09em;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: color 0.15s ease-in-out 0s;
 }

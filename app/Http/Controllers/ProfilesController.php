@@ -21,13 +21,19 @@ class ProfilesController extends Controller
     {
         try{
             $user   =   User::with('profile')->findOrFail($id);
+            $userFavoritedBookCount =   \DB::table('favorites')->where('user_id', $id)->count();
+            $userfollowingCount     =   \DB::table('follows')->where('follower_id', $id)->count();
+            $userfollowersCount     =   \DB::table('follows')->where('followed_id', $id)->count();
         }
         catch(ModelNotFoundException $e){
 //            return redirect('error')->with('msg', 'The Message');
             \Session::flash('message', "This user does not exist in our system");
             return redirect('error');
         }
-        return view('profiles.show')->withUser($user);
+        return view('profiles.show')->withUser($user)
+                                    ->with('userFavoritedBookCount', $userFavoritedBookCount)
+                                    ->with('userfollowingCount', $userfollowingCount)
+                                    ->with('userfollowersCount', $userfollowersCount);
     }
 
     public function edit($id)

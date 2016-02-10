@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Cookie;
+use App\Book;
+use App\Category;
 
 class HomepageController extends Controller
 {
@@ -16,7 +18,28 @@ class HomepageController extends Controller
     {
         Cookie::queue(Cookie::make('name', 'value', 'minutes'));
 
-        return view('test');
+        $indivisualbookSuggestion = \DB::select(\DB::raw("
+                                    SELECT itemID2, (sum/count) as average
+                                    FROM dev
+                                    WHERE count>2
+                                    ORDER BY (sum/count) DESC LIMIT 10")
+        );
+        if($indivisualbookSuggestion){
+            foreach($indivisualbookSuggestion as $singleSuggestion){
+                $bookNameOrDetails  =   Book::findOrFail($singleSuggestion->itemID2);
+                $items[]    =   array(
+                    'book_id'       =>  $bookNameOrDetails->id,
+                    'book_name'     =>  $bookNameOrDetails->title,
+                    'book_image'    =>  $bookNameOrDetails->cover_image,
+                    'book_desc'     =>  $bookNameOrDetails->description,
+                    'book_isbn'     =>  $bookNameOrDetails->isbn
+                );
+            }
+        }else{
+            $items[]    =   array();
+        }
+
+        return view('welcome')->with('suggestedBooks',$items);;
     }
 
     public function homepage()

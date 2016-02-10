@@ -55,32 +55,32 @@
 
                     <div class="twPc-divUser">
                         <div class="twPc-divName">
-                            <a href="https://twitter.com/mertskaplan">{{ $user->name }}</a>
+                            {{ $user->name }}
                         </div>
                         <span>
-                            <a href="https://twitter.com/mertskaplan">@<span>mertskaplan</span></a>
+                            @ <a href="https://twitter.com/{{ $user->profile->twitter_username }}" target="_blank"><span>{{ $user->profile->twitter_username }}</span></a>
                         </span>
                     </div>
 
                     <div class="twPc-divStats">
                         <ul class="twPc-Arrange">
                             <li class="twPc-ArrangeSizeFit">
-                                <a href="https://twitter.com/mertskaplan" title="9.840 Tweet">
-                                    <span class="twPc-StatLabel twPc-block">Tweets</span>
-                                    <span class="twPc-StatValue">9.840</span>
-                                </a>
+                                <span class="userInfocolor">
+                                    <span class="twPc-StatLabel twPc-block">Favorited</span>
+                                    <span class="twPc-StatValue">{{ $userFavoritedBookCount }}</span>
+                                </span>
                             </li>
                             <li class="twPc-ArrangeSizeFit">
-                                <a href="https://twitter.com/mertskaplan/following" title="885 Following">
+                                <span class="userInfocolor">
                                     <span class="twPc-StatLabel twPc-block">Following</span>
-                                    <span class="twPc-StatValue">885</span>
-                                </a>
+                                    <span class="twPc-StatValue">{{ $userfollowingCount }}</span>
+                                </span>
                             </li>
                             <li class="twPc-ArrangeSizeFit">
-                                <a href="https://twitter.com/mertskaplan/followers" title="1.810 Followers">
+                                <sapn class="userInfocolor">
                                     <span class="twPc-StatLabel twPc-block">Followers</span>
-                                    <span class="twPc-StatValue">1.810</span>
-                                </a>
+                                    <span class="twPc-StatValue">{{ $userfollowersCount }}</span>
+                                </sapn>
                             </li>
                         </ul>
                     </div>
@@ -91,7 +91,7 @@
             <div class="panel col-md-6 col-md-offset-1">
                 <div class="panel">
                     <div class="panel-body">
-                        <h4>Users Description:</h4>
+                        <h3 class="userInfoDesc"><u>Users Description</u> : </h3>
                         <span>
                             @if($user->profile->bio)
                                 {{ $user->profile->bio }}

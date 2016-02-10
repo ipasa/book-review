@@ -30,17 +30,17 @@
                                     </div>
                                     {{--<div class="likes">309 Likes</div>--}}
 
-                                    <div class="likes">
-                                        <p class="stars">
-                                            <span>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </span>
-                                        </p>
-                                    </div>
+                                    {{--<div class="likes">--}}
+                                        {{--<p class="stars">--}}
+                                            {{--<span>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star"></i>--}}
+                                                {{--<i class="fa fa-star-o"></i>--}}
+                                                {{--<i class="fa fa-star-o"></i>--}}
+                                            {{--</span>--}}
+                                        {{--</p>--}}
+                                    {{--</div>--}}
                                 </div>
 
                                 <div class="description">

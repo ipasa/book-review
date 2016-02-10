@@ -66,30 +66,44 @@
 <!-- BEST SELLING BOOK -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-md-6 col-sm-12 featured-section">
-            <h2 class="section_title">BEST SELLING BOOK</h2>
-            <figure class="featured-image-holder">
-                <img class="img-responsive" src="images/books/book1-600.jpg" alt="Thinking with Type, 2nd revised and expanded edition: A Critical Guide for Designers, Writers, Editors, &amp; Students" class="tokokoo-featured-product">
-            </figure>
-            <div class="col-xs-8 col-sm-8">
-                <p class="author">By <a href="http://tokokoodemo.us/papirus/books/authors/ellen-lupton/">Ellen Lupton</a></p>
-                <h3 class="item-title">
-                    <a href="#" title="Thinking with Type, 2nd revised and expanded edition: A Critical Guide for Designers, Writers, Editors, &amp; Students">Thinking with Type, 2nd revised and expanded edition: A Critical Guide for Designers, Writers, Editors, &amp; Students</a>
-                </h3>
-                Our all time best selling book is now available in a revised and expanded second edition.&nbsp;Thinking with Type&nbsp;is the definitive guide to using typography in visual communication, from the printed…
-            </div>
 
-            <div class="book_details col-xs-4 col-sm-4 text-center">
-                    <span class="tags">
-                        <a href="#">HTML5, </a>
-                        <a href="#">Web Application</a>
-                    </span>
+        <?php $first = true; ?>
+        @foreach($suggestedBooks as $suggestedBook)
+            @if($first)
+                <div class="col-xs-12 col-md-6 col-sm-12 featured-section">
+                    <h2 class="section_title">BEST SELLING BOOK</h2>
+                    <figure class="featured-image-holder">
+                        <img class="img-responsive" style="padding-left: 16px" src="{{ $suggestedBook['book_image'] }}"
+                             alt="" class="tokokoo-featured-product" height="340">
+                    </figure>
+                    <div class="col-xs-8 col-sm-8">
+                        {{--<p class="author">--}}
+                        {{--By <a href="http://tokokoodemo.us/papirus/books/authors/ellen-lupton/">Ellen Lupton</a>--}}
+                        {{--</p>--}}
+                        <h3 class="item-title">
+                            <a href="/book/{{ $suggestedBook['book_id'] }}" title="Thinking with Type, 2nd revised and expanded edition: A Critical Guide for
+                    Designers, Writers, Editors, &amp; Students">
+                                {{ $suggestedBook['book_name'] }}
+                            </a>
+                        </h3>
+                        {{ $suggestedBook['book_desc'] }}
+                    </div>
 
-                <div class="wishlist-button" style="display:block">
-                    <a href="#" class="add_to_wishlist add_to_cart_button">Add to Wishlist</a>
+                    <div class="book_details col-xs-4 col-sm-4 text-center">
+                        {{--<span class="tags">--}}
+                        {{--<a href="#">HTML5, </a>--}}
+                        {{--<a href="#">Web Application</a>--}}
+                        {{--</span>--}}
+
+                        <div class="wishlist-button" style="display:block">
+                            <a href="#" class="add_to_wishlist add_to_cart_button">ISBN - {{ $suggestedBook['book_isbn'] }}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <?php $first = false; ?>
+            @endif
+
+        @endforeach
         <!-- END OF BEST SELLING BOOK -->
 
         <!-- EXCLUSIVE THIS MONTH -->
@@ -155,35 +169,6 @@
             <section class="book_search wow no  animated">
                 <div class="container">
                     <h2 class="section_title">NEED TO FIND PARTICULAR PRODUCTS?</h2>
-                    <form action="#" method="get" role="search">
-                        <input type="text" name="s" placeholder="Find Products">
-                        <select name="product_cat" id="product_cat" class="postform">
-                            <option value="0" selected="selected">All Categories</option>
-                            <option class="level-0" value="programming">Programming</option>
-                            <option class="level-0" value="web-design">Web Design</option>
-                            <option class="level-0" value="javascript">Javascript</option>
-                            <option class="level-0" value="web-application">Web Application</option>
-                            <option class="level-0" value="html5">HTML5</option>
-                            <option class="level-0" value="seo">SEO</option>
-                        </select>
-
-                        <select name="authors" id="authors" class="postform">
-                            <option value="0" selected="selected">All Authors</option>
-                            <option class="level-0" value="thoriq-firdaus">Thoriq Firdaus</option>
-                            <option class="level-0" value="tim-kadlec">Tim Kadlec</option>
-                            <option class="level-0" value="steve-krug">Steve Krug</option>
-                            <option class="level-0" value="susan-weinschenk">Susan Weinschenk</option>
-                            <option class="level-0" value="austin-kleon">Austin Kleon</option>
-                            <option class="level-0" value="ellen-lupton">Ellen Lupton</option>
-                            <option class="level-0" value="patrick-mcneil">Patrick McNeil</option>
-                            <option class="level-0" value="brian-miller">Brian Miller</option>
-                            <option class="level-0" value="kyle-simpson">Kyle Simpson</option>
-                            <option class="level-0" value="nicholas-c-zakas">Nicholas C. Zakas</option>
-                        </select>
-
-                        <input type="submit" class="wishlist-button center-button" value="Search">
-                        <input type="hidden" name="post_type" value="product">
-                    </form>
                 </div>
             </section>
             <!-- begin book_search -->
@@ -217,7 +202,7 @@
                     <ul>
                         <?php for ($j=$counter; $j < $itemSize; $j++) { ?>
                         <li>
-                            <a href="{{ $categoryArray[$j]->name }}">
+                            <a href="/category/{{ $categoryArray[$j]->id }}">
                                 <?php
                                 echo $categoryArray[$j]->name;
                                 ?>
@@ -266,64 +251,64 @@
                 <h2 class="section_title">A random Slider That show some list</h2>
 
                 <div id="owl-example" class="owl-carousel">
+                    @foreach($suggestedBooks as $suggestedBook)
+                        <div class="item darkCyan">
+                            <img src="{{ $suggestedBook['book_image'] }}"  alt="Touch" style="height: 200px">
+                            <h4>{{ $suggestedBook['book_name'] }}</h4>
+                        </div>
+                    @endforeach
+                    {{--<div class="item forestGreen">--}}
+                        {{--<img src="assets/img/demo-slides/grab.png" alt="Grab">--}}
+                        {{--<h3>Grab</h3>--}}
+                        {{--<h4>Can grab this</h4>--}}
+                    {{--</div>--}}
+                    {{--<div class="item orange">--}}
+                        {{--<img src="assets/img/demo-slides/responsive.png" alt="Responsive">--}}
+                        {{--<h3>Responsive</h3>--}}
+                        {{--<h4>Fully responsive!</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item darkCyan">
-                        <img src="assets/img/demo-slides/touch.png" alt="Touch">
-                        <h3>Touch</h3>
-                        <h4>Can touch this</h4>
-                    </div>
-                    <div class="item forestGreen">
-                        <img src="assets/img/demo-slides/grab.png" alt="Grab">
-                        <h3>Grab</h3>
-                        <h4>Can grab this</h4>
-                    </div>
-                    <div class="item orange">
-                        <img src="assets/img/demo-slides/responsive.png" alt="Responsive">
-                        <h3>Responsive</h3>
-                        <h4>Fully responsive!</h4>
-                    </div>
+                    {{--<div class="item yellow">--}}
+                        {{--<img src="assets/img/demo-slides/css3.png" alt="CSS3">--}}
+                        {{--<h3>CSS3</h3>--}}
+                        {{--<h4>3D Acceleration.</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item yellow">
-                        <img src="assets/img/demo-slides/css3.png" alt="CSS3">
-                        <h3>CSS3</h3>
-                        <h4>3D Acceleration.</h4>
-                    </div>
+                    {{--<div class="item dodgerBlue">--}}
+                        {{--<img src="assets/img/demo-slides/multi.png" alt="Multi">--}}
+                        {{--<h3>Multiply</h3>--}}
+                        {{--<h4>Owls on page.</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item dodgerBlue">
-                        <img src="assets/img/demo-slides/multi.png" alt="Multi">
-                        <h3>Multiply</h3>
-                        <h4>Owls on page.</h4>
-                    </div>
+                    {{--<div class="item skyBlue">--}}
+                        {{--<img src="assets/img/demo-slides/modern.png" alt="Modern Browsers">--}}
+                        {{--<h3>Modern</h3>--}}
+                        {{--<h4>Browsers Compatibility</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item skyBlue">
-                        <img src="assets/img/demo-slides/modern.png" alt="Modern Browsers">
-                        <h3>Modern</h3>
-                        <h4>Browsers Compatibility</h4>
-                    </div>
+                    {{--<div class="item zombieGreen">--}}
+                        {{--<img src="assets/img/demo-slides/zombie.png" alt="Zombie Browsers - old ones">--}}
+                        {{--<h3>Zombie</h3>--}}
+                        {{--<h4>Browsers Compatibility</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item zombieGreen">
-                        <img src="assets/img/demo-slides/zombie.png" alt="Zombie Browsers - old ones">
-                        <h3>Zombie</h3>
-                        <h4>Browsers Compatibility</h4>
-                    </div>
+                    {{--<div class="item violet">--}}
+                        {{--<img src="assets/img/demo-slides/controls.png" alt="Take Control">--}}
+                        {{--<h3>Take Control</h3>--}}
+                        {{--<h4>The way you like</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item violet">
-                        <img src="assets/img/demo-slides/controls.png" alt="Take Control">
-                        <h3>Take Control</h3>
-                        <h4>The way you like</h4>
-                    </div>
+                    {{--<div class="item yellowLight">--}}
+                        {{--<img src="assets/img/demo-slides/feather.png" alt="Light">--}}
+                        {{--<h3>Light</h3>--}}
+                        {{--<h4>As a feather</h4>--}}
+                    {{--</div>--}}
 
-                    <div class="item yellowLight">
-                        <img src="assets/img/demo-slides/feather.png" alt="Light">
-                        <h3>Light</h3>
-                        <h4>As a feather</h4>
-                    </div>
-
-                    <div class="item steelGray">
-                        <img src="assets/img/demo-slides/tons.png" alt="Tons of Opotions">
-                        <h3>Tons</h3>
-                        <h4>of options</h4>
-                    </div>
+                    {{--<div class="item steelGray">--}}
+                        {{--<img src="assets/img/demo-slides/tons.png" alt="Tons of Opotions">--}}
+                        {{--<h3>Tons</h3>--}}
+                        {{--<h4>of options</h4>--}}
+                    {{--</div>--}}
 
                 </div>
             </div>

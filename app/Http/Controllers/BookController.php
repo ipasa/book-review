@@ -15,7 +15,7 @@ class BookController extends Controller{
                                     SELECT itemID2, (sum/count) as average
                                     FROM dev
                                     WHERE count>2 AND itemID1=$id
-                                    ORDER BY (sum/count) DESC LIMIT 10")
+                                    ORDER BY (sum/count) DESC LIMIT 1")
         );
         if($indivisualbookSuggestion){
             foreach($indivisualbookSuggestion as $singleSuggestion){
@@ -47,8 +47,9 @@ class BookController extends Controller{
     public function categoryShow($id){
         $categoryName       =   Category::find($id);
         $aCategoryDetails   =   Book::where('category_id', $id)->paginate(16);
-        return view('pages.categoryShow')->with('aCategoryDetails', $aCategoryDetails)
-                                         ->with('categoryName', $categoryName);
+        return view('pages.categoryShow')
+            ->with('aCategoryDetails', $aCategoryDetails)
+            ->with('categoryName', $categoryName);
     }
 
     public function predict() {
@@ -110,6 +111,8 @@ class BookController extends Controller{
                 $bookItem[]   =   array(
                     'book_id'   =>  $itemID,
                     'book_name' =>  $book->title,
+                    'book_image'=>  $book->cover_image,
+                    'book_cate' =>  $book->category->name,
                     'rating'    =>  $myRating
                 );
         }
