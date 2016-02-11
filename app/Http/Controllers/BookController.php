@@ -15,7 +15,7 @@ class BookController extends Controller{
                                     SELECT itemID2, (sum/count) as average
                                     FROM dev
                                     WHERE count>2 AND itemID1=$id
-                                    ORDER BY (sum/count) DESC LIMIT 1")
+                                    ORDER BY (sum/count) DESC LIMIT 6")
         );
         if($indivisualbookSuggestion){
             foreach($indivisualbookSuggestion as $singleSuggestion){
@@ -65,9 +65,9 @@ class BookController extends Controller{
             $numer = 0.0; //numerator
             $k = $itemID;
             $sqls = \DB::select(\DB::raw("
-                                    SELECT r.book_id, r.score_tag
-                                    FROM comments r
-                                    WHERE r.user_id=$userID AND r.book_id <> $itemID")
+                SELECT r.book_id, r.score_tag
+                FROM comments r
+                WHERE r.user_id=$userID AND r.book_id <> $itemID")
             );
 
             //for all items the user has rated
@@ -77,7 +77,7 @@ class BookController extends Controller{
 
                 //get the number of times k and j have both been rated by the same user
                 $sql2 = \DB::select(\DB::raw("
-                                    SELECT d.count, d.sum FROM dev d WHERE itemID1=$k AND itemID2=$j")
+                    SELECT d.count, d.sum FROM dev d WHERE itemID1=$k AND itemID2=$j")
                 );
 
                 //dd($sqls);

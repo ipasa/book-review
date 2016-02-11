@@ -50,7 +50,10 @@
                     </div>
 
                     <a title="Mert Salih Kaplan" href="https://twitter.com/mertskaplan" class="twPc-avatarLink">
-                        <img alt="Mert Salih Kaplan" src="https://pbs.twimg.com/profile_images/378800000352678934/34f9e192635975bf42e534434e2b6273_bigger.jpeg" class="twPc-avatarImg">
+                        <img alt="Mert Salih Kaplan"
+                             src="http://api.randomuser.me/portraits/thumb/men/<?php echo rand(1,70); ?>.jpg"
+                             class="twPc-avatarImg"
+                        >
                     </a>
 
                     <div class="twPc-divUser">
@@ -97,6 +100,9 @@
                                 {{ $user->profile->bio }}
                             @endif
                         </span>
+                    </div>
+                    <div class="panel-heading">
+                        <button>{!! link_to('/user/'.$user->profile->user_id.'/favorites', 'Favorite List' ) !!}</button>
                     </div>
                 </div>
             </div>

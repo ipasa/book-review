@@ -38,12 +38,12 @@ Route::post('favorites', ['as' => 'favorites.store', function () {
 
     Auth::user()->favorites()->attach(Input::get('book-id'));
     event(new UserHasfavorited($userName,$bookName->title));
-    return redirect('/');
+    return redirect()->back();
 }]);
 #Remove from Favorites
 Route::delete('favorites/{bookId}', ['as' => 'favorites.destroy', function ($bookid) {
     Auth::user()->favorites()->detach($bookid);
-    return redirect('/');
+    return redirect()->back();
 }]);
 
 // Authentication routes...
@@ -113,4 +113,15 @@ Route::get('/push', function () {
 //    event(new UserHasfavorited($user));
 //});
 
-Route::get('category-display', 'BookCategory@index');
+Route::get('category-display', [
+    'as'=>'category-display',
+    'uses'=>'BookCategory@index'
+]);
+
+Route::get('/dataGenerator', function () {
+    $followStream = \DB::select(\DB::raw("
+                SELECT books.id,isbn,title,description,category_id, categories.name as category_name,price,date_release,cover_image
+                FROM books,categories
+                where books.category_id=categories.id"));
+    echo json_encode($followStream);
+});

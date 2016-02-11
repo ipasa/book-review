@@ -128,7 +128,7 @@ class FollowController extends Controller
         \Auth::user()->follows()->attach(\Input::get('userIdToFollow'));
 
         //dd($followerID);
-        return redirect('/home');
+        return redirect()->back();;
     }
 
     /**

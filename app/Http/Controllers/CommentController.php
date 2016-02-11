@@ -45,7 +45,7 @@ class CommentController extends Controller
         $comment->score_tag = $score_tag;
         $comment->save();
 
-        echo url('/');
+        echo url('http://localhost/dev-update/dev-insert.php?userID='.\Auth::id().'&itemID='.$book_id);
     }
 
     /**

@@ -42,7 +42,7 @@
                         <div class="left-single-sidebar single-sidebar nav">
                             <ul v-repeat="user:users">
                                 <li class="active">
-                                    <a href="http://localhost:8000/category/@{{ user.category_id }}">@{{ user.category_id }}</a>
+                                    <a href="http://localhost:8000/category/@{{ user.category_id }}">@{{ user.category_name }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -123,9 +123,9 @@
                             suggestion: function (hit) {
                                 return(
                                         '<div>' +
-                                                '<span class="name">'+ hit.title +'</span>'+'<br>'+
-                                                '<span class="author">'+ hit.isbn +'</span>'+'<br>'+
-                                                '<span class="catagory">'+ hit.category_id +'</span>'+
+                                                '<span class="name">Book Name - '+ hit.title +'</span>'+'<br>'+
+                                                '<span class="author">ISBN Number - '+ hit.isbn +'</span>'+'<br>'+
+                                                '<span class="catagory">Category - '+ hit.category_name +'</span>'+
                                         '</div>'
                                 )
                             }

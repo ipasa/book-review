@@ -71,9 +71,9 @@
         @foreach($suggestedBooks as $suggestedBook)
             @if($first)
                 <div class="col-xs-12 col-md-6 col-sm-12 featured-section">
-                    <h2 class="section_title">BEST SELLING BOOK</h2>
+                    <h2 class="section_title">BEST RATED BOOK</h2>
                     <figure class="featured-image-holder">
-                        <img class="img-responsive" style="padding-left: 16px" src="{{ $suggestedBook['book_image'] }}"
+                        <img class="img-responsive bestRatedBook" src="{{ $suggestedBook['book_image'] }}"
                              alt="" class="tokokoo-featured-product" height="340">
                     </figure>
                     <div class="col-xs-8 col-sm-8">

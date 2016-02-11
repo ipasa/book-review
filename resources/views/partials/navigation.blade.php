@@ -14,6 +14,7 @@
             {{--<ul class="nav navbar-nav navbar-left"></ul>--}}
             <ul class="nav navbar-nav navbar-right">
                 <li>{!! link_to_route('search', 'Search') !!}</li>
+                <li>{!! link_to_route('category-display', 'Categories') !!}</li>
                 <li>{!! link_to('/alluser', 'Browser User') !!}</li>
 
                 @if (Auth::guest())

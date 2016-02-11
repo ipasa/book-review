@@ -26,14 +26,11 @@
                                 </span>
 
                                 <span class="Lesson-List__title utility-flex">
-                                  <a class="green" href="/series/laravel-5-and-the-front-end">
-                                      {{$favorite->title}}
-                                  </a><br>
-                                  <a class="green" href="/series/laravel-5-and-the-front-end/episodes/1">Catagory Name</a>
+                                    {!! link_to('/book/'.$favorite->id,$favorite->title, array('class'=>'green')) !!}
                                 </span>
 
                                 <span class="Lesson-List__date">
-                                  Nov 25th, 2014
+                                    {{$favorite->category->name}}
                                 </span>
                             </li>
 

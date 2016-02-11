@@ -171,7 +171,7 @@
                                     $bookRating =   $totalRating/$bookdetails->comments->count();
                                     $i = round($bookRating);
                                 ?>
-
+                                {{--?{{ dd($i) }}--}}
                                 <!-- USER SINGLE RATING -->
                                 <span>
                                     <p class="stars">
@@ -180,7 +180,7 @@
                                             @for($j=1;$j<=$i;$j++)
                                                 <i class="fa fa-star"></i>
                                             @endfor
-                                            @for($j=1;$j<=5-$i;$j++)
+                                            @for($j=1;$j<=10-$i;$j++)
                                                 <i class="fa fa-star-o"></i>
                                             @endfor
                                         </span>
