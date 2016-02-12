@@ -22,6 +22,6 @@ class BookCategory extends Controller
                             ->groupBy('category_id')
                             ->get();
         //dd($allCategory);
-        return view('test')->with('allcates', $allCategory);
+        return view('pages.categoryList')->with('allcates', $allCategory);
     }
 }

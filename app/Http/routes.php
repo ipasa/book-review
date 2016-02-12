@@ -125,3 +125,10 @@ Route::get('/dataGenerator', function () {
                 where books.category_id=categories.id"));
     echo json_encode($followStream);
 });
+
+
+//Test Area ROute
+
+//Route::get('/test', function () {
+//    return view('test');
+//});

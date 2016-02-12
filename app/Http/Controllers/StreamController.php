@@ -98,6 +98,9 @@ class StreamController extends Controller
 
             krsort($dataArray);
             $dataArray = array_slice($dataArray, 0, 15);
+
+            //echo $dataArray;
+            //echo json_encode($dataArray);
             //dd($dataArray);
             return view('pages.stream')->with('items', $dataArray);
         } else
