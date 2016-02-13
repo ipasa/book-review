@@ -8,8 +8,8 @@
     @foreach($bookdetails->comments as $comments)
 
         <div class="single_user">
-            <img src="{{ URL::asset('images/user/david-bushell-reviewer.png') }}" alt="">
-            <span class="reviewer_name">— {{ $comments->user->name }}</span>
+            <img src="http://api.randomuser.me/portraits/thumb/men/<?php echo rand(1,70); ?>.jpg" alt="" width="60">
+            <span class="reviewer_name">— <a href="/user/{{ $comments->user->id }}">{{ $comments->user->name }}</a></span>
             <?php $i = $comments->score_tag; ?>
             <!-- USER SINGLE RATING -->
             <span>

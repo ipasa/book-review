@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Rating;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class CommentController extends Controller
@@ -46,13 +43,7 @@ class CommentController extends Controller
         $comment->score_tag = $score_tag;
         $comment->save();
 
-        $rating     = new \App\Rating();
-        $rating->book_id    = $book_id;
-        $rating->rating     = $score_tag;
-        $rating->save();
-
-
-        echo url('http://localhost/dev-update/dev-insert.php?userID='.\Auth::id().'&itemID='.$book_id);
+        echo url('http://localhost/dev-update/dev-insert.php?userID='.\Auth::id().'&itemID='.$book_id.'&score='.$score_tag);
     }
 
     /**
