@@ -8,16 +8,21 @@
             <div class="Banner">
                 <h1 class="Banner__heading utility-center">
                     Stream
-            <span class="utility-text-little utility-muted">
-              Live Stream to our entire web application
-            </span>
+                    <span class="utility-text-little utility-muted">
+                      Live Stream to our entire web application
+                    </span>
                 </h1>
             </div>
         </header>
 
         <section class="row">
             <div class="Grid__column col-md-8 centered">
-                <ul class="Lesson-List ">
+                <ul class="Lesson-List">
+                    <li class="Lesson-List__item">
+                        <span class="Lesson-List__title utility-flex streamSigle">
+                            <p class="group-title">Status of following users</p>
+                        </span>
+                    </li>
 
                     @foreach($items as $item)
                         <li class="Lesson-List__item">
@@ -99,6 +104,12 @@
 
             <div class="Grid__column col-md-4 left">
                 <ul class="Lesson-List" id="users">
+                    <li class="Lesson-List__item">
+                        <span class="Lesson-List__title utility-flex streamSigle">
+                            <p class="group-title">Real Time Streaming</p>
+                        </span>
+                    </li>
+
                     <li v-repeat="user:users" class="Lesson-List__item">
                         <span class="Lesson-List__status">
                               <i class="fa fa-heart-o"></i>

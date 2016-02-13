@@ -81,18 +81,20 @@
                             </article>
                         </div>
                     </div>
-                    <div class="right-sidebar col-md-3">
-                        <div class="right-single-sidebar single-sidebar tags">
-                            <h2 class="sidebar-title">Tags</h2>
-                            <ul class="tag">
-                                <a href="#">html5</a>
-                                <a href="#">html</a>
-                                <a href="#">css</a>
-                                <a href="#">css3</a>
-                                <a href="#">jquery</a>
-                            </ul>
-                        </div>
-                    </div>
+
+                    {{--<div class="right-sidebar col-md-3">--}}
+                        {{--<div class="right-single-sidebar single-sidebar tags">--}}
+                            {{--<h2 class="sidebar-title">Tags</h2>--}}
+                            {{--<ul class="tag">--}}
+                                {{--<a href="#">html5</a>--}}
+                                {{--<a href="#">html</a>--}}
+                                {{--<a href="#">css</a>--}}
+                                {{--<a href="#">css3</a>--}}
+                                {{--<a href="#">jquery</a>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
                 </div>
             </div>
         </div>
@@ -122,11 +124,11 @@
                         templates   :   {
                             suggestion: function (hit) {
                                 return(
-                                        '<div>' +
-                                                '<span class="name">Book Name - '+ hit.title +'</span>'+'<br>'+
-                                                '<span class="author">ISBN Number - '+ hit.isbn +'</span>'+'<br>'+
-                                                '<span class="catagory">Category - '+ hit.category_name +'</span>'+
-                                        '</div>'
+                                    '<div>' +
+                                            '<span class="name">Book Name - '+ hit.title +'</span>'+'<br>'+
+                                            '<span class="author">ISBN Number - '+ hit.isbn +'</span>'+'<br>'+
+                                            '<span class="catagory">Category - '+ hit.category_name +'</span>'+
+                                    '</div>'
                                 )
                             }
                         }

@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="container mar-top-50">
+        <header class="Header-favorite">
+            <div class="Banner">
+                <h1 class="Banner__heading utility-center">
+                    Users
+                    <span class="utility-text-little utility-muted">
+                      All User on Our system
+                    </span>
+                </h1>
+            </div>
+        </header>
+
         @foreach(array_chunk($users->all(),3) as $row)
             <div class="row" style="margin-bottom: 10px">
                 @foreach($row as $user)

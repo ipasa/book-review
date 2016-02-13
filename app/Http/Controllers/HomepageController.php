@@ -32,14 +32,35 @@ class HomepageController extends Controller
                     'book_name'     =>  $bookNameOrDetails->title,
                     'book_image'    =>  $bookNameOrDetails->cover_image,
                     'book_desc'     =>  $bookNameOrDetails->description,
-                    'book_isbn'     =>  $bookNameOrDetails->isbn
+                    'book_isbn'     =>  $bookNameOrDetails->isbn,
+                    'book_category' =>  $bookNameOrDetails->category->name
                 );
             }
         }else{
             $items[]    =   array();
         }
 
-        return view('welcome')->with('suggestedBooks',$items);;
+        $tradingBooks = \DB::table('ratings')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('rating', 'desc')
+            ->take(4)
+            ->get();
+        //dd($tradingBooks);
+        foreach($tradingBooks as $tradingBook){
+            $bookNameOrDetails  =   Book::findOrFail($tradingBook->book_id);
+            $tradingBooksSuggestion[]    =   array(
+                'book_id'       =>  $bookNameOrDetails->id,
+                'book_name'     =>  $bookNameOrDetails->title,
+                'book_image'    =>  $bookNameOrDetails->cover_image,
+                'book_category' =>  $bookNameOrDetails->category->name
+            );
+        }
+
+        //dd($tradingBooksSuggestion);
+
+        return view('welcome')
+            ->with('suggestedBooks',$items)
+            ->with('tradingBooks',$tradingBooksSuggestion);
     }
 
     public function homepage()

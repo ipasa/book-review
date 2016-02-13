@@ -33,8 +33,9 @@
 </head>
 
 <body>
-<header>
-    <img src="{{ URL::asset('images/mountains.jpg') }}" alt="Mountains">
+@include('partials.navigation')
+<header class="mar-top-50">
+    <img src="{{ URL::asset('images/open-book.jpg') }}" alt="Mountains">
 
     <div class="name fancy-font">
         Book Review
@@ -90,10 +91,9 @@
                     </div>
 
                     <div class="book_details col-xs-4 col-sm-4 text-center">
-                        {{--<span class="tags">--}}
-                        {{--<a href="#">HTML5, </a>--}}
-                        {{--<a href="#">Web Application</a>--}}
-                        {{--</span>--}}
+                        <span class="tags">
+                            Book Category - <a href="#">{{ $suggestedBook['book_category'] }}</a>
+                        </span>
 
                         <div class="wishlist-button" style="display:block">
                             <a href="#" class="add_to_wishlist add_to_cart_button">ISBN - {{ $suggestedBook['book_isbn'] }}</a>
@@ -111,51 +111,25 @@
             <h2 class="section_title inverse">Exclusive This month</h2>
             <ul class="products">
 
-                <li class="col-xs-12 col-sm-6 col-md-6 first last">
-                    <img src="images/books/book5-300.jpg" class="" alt="book5-300">
-                </li>
-
+                @foreach($tradingBooks as $tradingBook)
                 <li class="col-xs-12 col-sm-6 col-md-6 first last">
 
                     <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="images/books/book6-300.jpg" class="" alt="book5-300">
+                        <figure class="effect-sadie"
+                                style="background-color:#F8F8F8;">
+                            <img src="{{ $tradingBook['book_image'] }}"
+                                 class="exclusiveThisMonth"
+                                 alt="book5-300"
+                            >
                             <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
+                                <h2>{{ $tradingBook['book_name'] }}</h2>
+                                <p>{{ $tradingBook['book_category'] }}</p>
+                                <a href="/book/{{ $tradingBook['book_id'] }}">View Detail's</a>
                             </figcaption>
                         </figure>
                     </div>
                 </li>
-
-                <li class="col-xs-12 col-sm-6 col-md-6 first last">
-
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
-
-                <li class="col-xs-12 col-sm-6 col-md-6 first last">
-
-                    <div class="grid">
-                        <figure class="effect-sadie">
-                            <img src="images/books/book8-300.jpg" class="" alt="book5-300">
-                            <figcaption>
-                                <h2>Holy <span>Sadie</span></h2>
-                                <p>Sadie never took her eyes off me. <br>She had a dark soul.</p>
-                                <a href="#">View more</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </li>
+                @endforeach
 
             </ul>
         </div>
@@ -209,12 +183,12 @@
                             </a>
                         </li>
                         <?php
-                        }
-                        $counter    =   $j;
-                        $itemSize   =   $j+$newCounter;
-                        if ($itemSize>$sizeOfCategoryArray) {
-                            $itemSize   =   $sizeOfCategoryArray;
-                        }
+                            }
+                            $counter    =   $j;
+                            $itemSize   =   $j+$newCounter;
+                            if ($itemSize>$sizeOfCategoryArray) {
+                                $itemSize   =   $sizeOfCategoryArray;
+                            }
                         ?>
                     </ul>
                 </div>
@@ -252,8 +226,8 @@
 
                 <div id="owl-example" class="owl-carousel">
                     @foreach($suggestedBooks as $suggestedBook)
-                        <div class="item darkCyan">
-                            <img src="{{ $suggestedBook['book_image'] }}"  alt="Touch" style="height: 200px">
+                        <div class="item dodgerBlue">
+                            <a href="/book/{{ $suggestedBook['book_id'] }}"><img src="{{ $suggestedBook['book_image'] }}"  alt="Touch" style="height: 200px"></a>
                             <h4>{{ $suggestedBook['book_name'] }}</h4>
                         </div>
                     @endforeach
@@ -336,7 +310,7 @@
 </footer>
 
 <section class="footer-bottom">
-    2014 &copy; Jonathan White. All rights reserved.
+    2016 &copy; HASAN HAFIZ PASHA & MAHADI HASAN RAJU. ALL RIGHTS RESERVED.
 </section>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

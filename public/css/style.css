@@ -8990,6 +8990,7 @@ span.linktext {
     display: block !important;
 }
 .twPc-button {
+    position: absolute;
     margin: -35px -10px 0;
     text-align: right;
     width: 100%;
@@ -9138,4 +9139,32 @@ div#respond {
     -ms-transform: rotate(-20deg); /* IE 9 */
     -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
     transform: rotate(-20deg);
+}
+
+.exclusiveThisMonth{
+    position: relative;
+    left: 10px;
+    height: 325px;
+    -ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
+    transform: rotate(-20deg);
+}
+img.exclusiveThisMonth {
+    width: 225px!important;
+}
+figure.effect-sadie h2{
+    color: #a94442;
+}
+hr {
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+a.navbar-brand.text-danger {
+    font-family: "Kaushan Script", cursive;
+}
+.group-title{
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0px;
+    letter-spacing: 0.09em;
 }

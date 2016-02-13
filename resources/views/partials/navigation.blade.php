@@ -8,10 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand text-danger" href="#">BRAND</a>
+            {!! link_to('/','BOOK REVIEW', array('class'=>'navbar-brand text-danger')) !!}
+            {{--<a class="navbar-brand text-danger" href="">BOOK REVIEW</a>--}}
         </div>
+
         <div class="navbar-collapse collapse" id="navbar-collapsible">
-            {{--<ul class="nav navbar-nav navbar-left"></ul>--}}
+            {{--<ul class="nav navbar-nav navbar-left">pashaa</ul>--}}
             <ul class="nav navbar-nav navbar-right">
                 <li>{!! link_to_route('search', 'Search') !!}</li>
                 <li>{!! link_to_route('category-display', 'Categories') !!}</li>
