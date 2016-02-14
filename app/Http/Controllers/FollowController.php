@@ -41,6 +41,8 @@ class FollowController extends Controller
                 ->whereIn('book_id',$favoritesAlist)
                 ->count();
 
+            //dd($favoritesB);
+
             //Calculation of lift
             $liftAofB   =   $favoritesAintersetB/sqrt($favoritesB*$favoritesA);
 

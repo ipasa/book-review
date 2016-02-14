@@ -41,10 +41,14 @@
         Book Review
     </div>
     <div class="titles">
-        <h1>Hello!
-            <span>I'm Jonathan</span>
+        <h1>Read book,
+            <span>Know the world</span>
         </h1>
-        <h2>I love to travel all around the world and design beautiful things</h2>
+        <h2>
+            Always read something that will make you look good if you die in the middle of it.
+            <br>–P.J. O’Rourke
+        </h2>
+
     </div>
     <div class="social">
         <a class="facebook" href="#">Facebook</a>
@@ -57,7 +61,7 @@
 <div class="container-fluid welcome">
     <div class="row">
         <div class="col-xs-12">
-            <h2>Welcome to Papirus book store</h2>
+            <h2>Welcome to Our Application</h2>
             <p>Tons of book collections you can choose from. Books that don’t suck, we ensure the quality of our books the best you can find anywhere.</p>
         </div>
     </div>
@@ -222,7 +226,7 @@
     <div class="row demo-color">
         <div id="demo">
             <div class="col-md-12">
-                <h2 class="section_title">A random Slider That show some list</h2>
+                <h2 class="section_title">A random Slider That show some list Based On Rating</h2>
 
                 <div id="owl-example" class="owl-carousel">
                     @foreach($suggestedBooks as $suggestedBook)
@@ -302,39 +306,53 @@
         <div class="row">
             <div class="col-xs-12">
                 <h4>Get in touch</h4>
-                <p class="about-text">I shoot, design and write. Don't hesitate and get in touch with me if you need some creative work done. I always work to achieve my best and fulfil client needs</p>
+                <p class="about-text">
+                    If you have any questions, please feel free to ask.
+                </p>
                 <a class="contact-now-btn" href="#">Contact Now</a>
             </div>
         </div>
     </div>
 </footer>
 
-<section class="footer-bottom">
-    2016 &copy; HASAN HAFIZ PASHA & MAHADI HASAN RAJU. ALL RIGHTS RESERVED.
-</section>
+    <section class="footer-bottom">
+        2016 &copy; HASAN HAFIZ PASHA & MAHADI HASAN RAJU. ALL RIGHTS RESERVED.
+    </section>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
 
-<!-- OWL Carasol JS -->
-<script src="assets/js/jquery-1.9.1.min.js"></script>
-<script src="css/owl-carousel/owl.carousel.min.js"></script>
+    <!-- OWL Carasol JS -->
+    <script src="assets/js/jquery-1.9.1.min.js"></script>
+    <script src="css/owl-carousel/owl.carousel.min.js"></script>
 
-<!-- Frontpage Demo -->
-<script>
-    $(document).ready(function($) {
-        $("#owl-example").owlCarousel();
-    });
+    <!-- Frontpage Demo -->
+    <script>
+        $(document).ready(function($) {
+            $("#owl-example").owlCarousel();
+        });
 
-    $("body").data("page", "frontpage");
-</script>
+        $("body").data("page", "frontpage");
+    </script>
 
-<script src="assets/js/bootstrap-collapse.js"></script>
-<script src="assets/js/bootstrap-transition.js"></script>
-<script src="assets/js/google-code-prettify/prettify.js"></script>
-<script src="assets/js/application.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/application.js"></script>
+
+    {{--For pusher Section--}}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ URL::asset('js/bootstrap.js') }}"></script>
+    <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="{{ URL::asset('js/realpush.js') }}"></script>
+    {{--For pusher Section--}}
 
 </body>
 </html>
