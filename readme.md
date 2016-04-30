@@ -4,3 +4,14 @@ A book review is a web based application that holds individual comments, critics
 
 Personalized recommendation is based on user preference. The algorithm used for this type of recommendation is rating-based item-to-item recommender system based on Slope One algorithm. User to user recommendation is also used in the application. Co-efficient cosine similarity is used for user to user recommendation. A streaming system is included in the application to view the activities of a user by others who follow that user. A real time notification system is also implemented in this system. In the current time, the user activities followed by any user are shown in the notification. An advanced search is also implemented in this system for finding books based on different terms: book name, category of book, tags, ISBN or any keyword that remains in the description of any book.
 This application also shows the top rated books in all time and also the best rated books in the current month. A suggestion for books related to any search is also shown. The demo data inserted in this application are taken form Amazon book data set.
+
+## Design Tools
+* Laravel
+* Virtual Box
+* Vagrant
+* Homestead
+  * NGINX 
+  * MySQL 
+* [Pusher](https://pusher.com)
+* [Algolia](https://www.algolia.com)
+* Phpstorm Ide
