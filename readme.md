@@ -15,3 +15,4 @@ This application also shows the top rated books in all time and also the best ra
 * [Pusher](https://pusher.com)
 * [Algolia](https://www.algolia.com)
 * Phpstorm Ide
+* VUE.JS
